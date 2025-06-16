@@ -103,7 +103,15 @@ export function AddReminderModal() {
               id="schedule-date"
               name="schedule-date"
               type="date"
-              onChange={(e) => setScheduleDate(e.target.value)}
+              onChange={(e) => {
+                const date = new Date(e.target.value);
+                if (date < new Date()) {
+                  toast.error("Schedule date cannot be in the past");
+                  setScheduleDate("");
+                  return;
+                }
+                setScheduleDate(e.target.value);
+              }}
             />
           </div>
         </div>
