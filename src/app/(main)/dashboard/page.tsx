@@ -1,5 +1,5 @@
 "use server";
-import React, { useState } from "react";
+
 import DashboardCalendarToggle from "@components/Essentials/DashboardCalendarToggle";
 import { AddReminderModal } from "@components/Essentials/ReminderDialog";
 import Reminders from "@components/Essentials/Reminders";
@@ -10,8 +10,7 @@ import { getReminders } from "./dashboard-action";
 
 export default async function Dashboard() {
 const receivedData = await getReminders();
-  const reminders = receivedData?.data || [];
-   const [filteredReminders, setFilteredReminders] = useState(reminders);
+
 if (receivedData?.serverError) {
 return <>An error occurred while fetching reminders.</>;
 }
@@ -38,15 +37,12 @@ return (
 
 {/* Search & Filter */}
 <div className="mb-3.5">
-<SearchFilter 
- reminders={reminders}
-          onFilterChange={setFilteredReminders}
-/>
+<SearchFilter />
 </div>
 
 {/* Reminders Table */}
 <div className="mb-5">
-<ReminderTable reminders={filteredReminders} />
+<ReminderTable reminders={receivedData?.data || []} />
 </div>
 </main>
 );
