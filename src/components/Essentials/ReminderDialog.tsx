@@ -147,13 +147,13 @@ export function EditReminderModal({
   setIsDialogOpen: (isOpen: boolean) => void;
 }) {
   const [problemSlug, setProblemSlug] = useState<string | undefined>(
-    reminder.problemSlug
+    reminder.problemSlug,
   );
   const [scheduleDate, setScheduleDate] = useState<string | undefined>(
-    reminder.scheduledDate.toISOString()
+    reminder.scheduledDate.toISOString(),
   );
   const [reminderStatus, setReminderStatus] = useState<REMINDER_STATUS>(
-    reminder.reminderStatus
+    reminder.reminderStatus,
   );
   const { execute, hasErrored, hasSucceeded, isExecuting } =
     useAction(updateReminder);
@@ -207,7 +207,14 @@ export function EditReminderModal({
               id="schedule-date"
               name="schedule-date"
               type="date"
-              onChange={(e) => setScheduleDate(e.target.value)}
+              onChange={(e) => {
+                const date = new Date(e.target.value);
+                if (date < new Date()) {
+                  toast.error("Schedule date cannot be in the past");
+                  return;
+                }
+                setScheduleDate(e.target.value);
+              }}
             />
           </div>
           <div className="grid gap-3">
