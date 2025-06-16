@@ -211,6 +211,7 @@ export function EditReminderModal({
                 const date = new Date(e.target.value);
                 if (date < new Date()) {
                   toast.error("Schedule date cannot be in the past");
+                  setScheduleDate("");
                   return;
                 }
                 setScheduleDate(e.target.value);
