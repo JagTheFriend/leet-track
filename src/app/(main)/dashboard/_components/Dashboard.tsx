@@ -7,10 +7,12 @@ import ReminderTable from "@components/Essentials/ReminderTable";
 import SearchFilter from "@components/Essentials/SearchFilter";
 import WelcomeBanner from "@components/Essentials/WelcomeBanner";
 import { Reminder } from "@prisma-client";
-import { useState } from "react";
 
 export default function Dashboard({ reminders }: { reminders: Reminder[] }) {
-  const [filteredReminders, setFilteredReminders] = useState<Reminder[]>([]);
+  var filteredReminders = reminders;
+  const setFilteredReminders = (reminders: Reminder[]) => {
+    filteredReminders = reminders;
+  };
 
   return (
     <main className="flex flex-col pt-2 mt-0">
