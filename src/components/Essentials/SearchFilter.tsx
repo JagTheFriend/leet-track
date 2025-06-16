@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -9,24 +8,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Reminder } from "@prisma-client";
 import { Search } from "lucide-react";
-
-interface Reminder {
-  id: string;
-  question: string;
-  status: "pending" | "completed";
-  level: "easy" | "medium" | "hard";
-  // Add other properties as needed
-}
+import { useEffect, useState } from "react";
 
 interface SearchFilterProps {
   reminders: Reminder[];
   onFilterChange: (filtered: Reminder[]) => void;
 }
 
-export default function SearchFilter({ 
+export default function SearchFilter({
   reminders,
-  onFilterChange 
+  onFilterChange,
 }: SearchFilterProps) {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
@@ -45,17 +38,21 @@ export default function SearchFilter({
     let filtered = [...reminders];
 
     if (search) {
-      filtered = filtered.filter(reminder =>
-        reminder.question.toLowerCase().includes(search.toLowerCase())
+      filtered = filtered.filter((reminder) =>
+        reminder.problemTitle.toLowerCase().includes(search.toLowerCase()),
       );
     }
 
     if (status !== "all") {
-      filtered = filtered.filter(reminder => reminder.status === status);
+      filtered = filtered.filter(
+        (reminder) => reminder.reminderStatus === status,
+      );
     }
 
     if (level !== "all") {
-      filtered = filtered.filter(reminder => reminder.level === level);
+      filtered = filtered.filter(
+        (reminder) => reminder.problemDifficulty === level,
+      );
     }
 
     onFilterChange(filtered);
@@ -77,7 +74,7 @@ export default function SearchFilter({
             placeholder="Search problems..."
             className="pl-8"
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 
