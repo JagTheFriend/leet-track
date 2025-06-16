@@ -84,8 +84,9 @@ export default function SearchFilter({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Status</SelectItem>
-            <SelectItem value="pending">Pending</SelectItem>
-            <SelectItem value="completed">Completed</SelectItem>
+            <SelectItem value="PENDING">Pending</SelectItem>
+            <SelectItem value="COMPLETED">Completed</SelectItem>
+            <SelectItem value="UPCOMING">Upcoming</SelectItem>
           </SelectContent>
         </Select>
 
@@ -95,9 +96,9 @@ export default function SearchFilter({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Levels</SelectItem>
-            <SelectItem value="easy">Easy</SelectItem>
-            <SelectItem value="medium">Medium</SelectItem>
-            <SelectItem value="hard">Hard</SelectItem>
+            <SelectItem value="EASY">Easy</SelectItem>
+            <SelectItem value="MEDIUM">Medium</SelectItem>
+            <SelectItem value="HARD">Hard</SelectItem>
           </SelectContent>
         </Select>
       </div>
