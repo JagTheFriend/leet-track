@@ -1,8 +1,6 @@
 // src/components/Essentials/NotificationContext.tsx
 "use client";
 import { getQOTD, getReminders } from "@/app/(main)/dashboard/dashboard-action";
-import { Reminder } from "@prisma-client";
-import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -22,11 +20,8 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === "/login" || pathname === "/signup") return;
-
     const getData = async () => {
       const QOTD = await getQOTD();
 
@@ -34,7 +29,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
         toast.error("Failed to fetch QOTD");
       }
 
-      const data: Partial<Reminder> = {
+      const data = {
         problemTitle: QOTD?.data?.questionTitle ?? "Title",
       };
       addNotification(data.problemTitle ?? "Check QOTD");
@@ -49,7 +44,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
       );
     };
     getData();
-  }, [pathname]);
+  }, []);
 
   const addNotification = (message: string) => {
     setNotifications((prev) => [

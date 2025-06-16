@@ -8,8 +8,8 @@ export default function WelcomeBanner() {
   return (
     <div className="py-1 pr-1">
       <h1 className="text-3xl font-bold text-black">
-        Welcome Back,
-        {user?.username ?? user?.firstName ?? user?.lastName ?? "Guest"} !
+        Welcome Back,{" "}
+        {user?.username ?? user?.firstName ?? user?.lastName ?? "Guest"}!
       </h1>
     </div>
   );
