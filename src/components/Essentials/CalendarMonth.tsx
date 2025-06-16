@@ -10,7 +10,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import { CheckCircle, CircleSmall, XCircle } from "lucide-react";
+import { CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -95,7 +95,7 @@ export default function CalendarMonth({
               prefetch
             >
               <div className="flex flex-row gap-1 items-center">
-                <CircleSmall height={10} width={10} /> {reminder.problemTitle}
+                ⦿ {reminder.problemTitle}
               </div>
             </Link>
           ))}
