@@ -5,5 +5,11 @@ export default function CalenderLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
+  return (
+    <Suspense
+      fallback={<div className="p-8 text-center">Loading reminders...</div>}
+    >
+      {children}
+    </Suspense>
+  );
 }
