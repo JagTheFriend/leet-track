@@ -12,6 +12,6 @@ jobs:
       - name: Send Scheduled Email Reminder
         uses: fjogeleit/http-request-action@v1
         with:
-          url: "${{ secrets.VERCEL_URL }}/api/webhook/github/scheduled"
+          url: "https://leet-track-ochre.vercel.app/api/webhook/github/scheduled"
           method: "POST"
           customHeaders: '{"Content-Type": "application/json", "Authorization": "Bearer ${{ secrets.CUSTOM_RESEND_WEBHOOK_SECRET }}"}'
