@@ -7,7 +7,6 @@ const roboto = Roboto({
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import EmailNotifications from "@components/Essentials/EmailNotification";
-import PushNotification from "@components/Essentials/PushNotification";
 import { Bell } from "lucide-react";
 import { getSettings } from "./settings-action";
 
@@ -39,7 +38,7 @@ export default async function SettingsPage() {
           </TabsList>
           <TabsContent value="notifications">
             <EmailNotifications userData={receivedData.data} />
-            <PushNotification userData={receivedData.data} />
+            {/* <PushNotification userData={receivedData.data} /> */}
           </TabsContent>
         </Tabs>
       </div>
