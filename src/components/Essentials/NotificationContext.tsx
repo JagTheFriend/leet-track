@@ -1,6 +1,7 @@
 // src/components/Essentials/NotificationContext.tsx
 "use client";
 import { getQOTD, getReminders } from "@/app/(main)/dashboard/dashboard-action";
+import { useUser } from "@clerk/nextjs";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -19,9 +20,12 @@ const NotificationContext = createContext<NotificationContextType | undefined>(
 export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const { isSignedIn } = useUser();
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
+    if (!isSignedIn) return;
+
     const getData = async () => {
       const QOTD = await getQOTD();
 
@@ -44,7 +48,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
       );
     };
     getData();
-  }, []);
+  }, [isSignedIn]);
 
   const addNotification = (message: string) => {
     setNotifications((prev) => [
