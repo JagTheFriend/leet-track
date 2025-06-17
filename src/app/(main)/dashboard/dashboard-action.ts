@@ -69,6 +69,9 @@ export const getReminders = authActionClient.action(async ({ ctx }) => {
     where: {
       userId: ctx.user.externalUserId,
     },
+    orderBy: {
+      scheduledDate: "desc",
+    },
   });
 });
 

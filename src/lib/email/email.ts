@@ -46,7 +46,12 @@ export async function sendReminderEmails() {
             scheduledDate: {
               // Get Reminders Due Today
               equals: new Date(new Date().toISOString().split("T")[0]),
+              // Get reminders due yesterday/in the past
+              lte: new Date(new Date().toISOString().split("T")[0]),
             },
+          },
+          orderBy: {
+            scheduledDate: "desc",
           },
         },
       },
@@ -102,6 +107,9 @@ export async function sendDailyDigestEmail() {
               lte: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             },
             reminderStatus: "UPCOMING",
+          },
+          orderBy: {
+            scheduledDate: "desc",
           },
         },
       },
@@ -168,6 +176,9 @@ export async function sendWeeklyReportEmail() {
               gte: weekStart,
               lte: weekEnd,
             },
+          },
+          orderBy: {
+            scheduledDate: "desc",
           },
         },
       },
