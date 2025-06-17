@@ -57,12 +57,12 @@ const Reminders = ({ reminders }: { reminders: Reminder[] }) => {
         return (
           <div key={label} className="border w-full h-24 p-4">
             <div>
-              <h3 className="text-sm text-gray-600 whitespace-nowrap">
+              <h3 className="text-sm text-gray-600 whitespace-nowrap inline">
                 {label}
+            <span className="ml-2 inline-block ">{icon}</span>
               </h3>
               <p className="text-2xl font-bold text-gray-800">{value}</p>
             </div>
-            <div className="ml-6">{icon}</div>
           </div>
         );
       })}
