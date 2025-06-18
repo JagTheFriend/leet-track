@@ -1,4 +1,3 @@
-import Navbar from "@/components/Essentials/Navbar";
 import { NotificationProvider } from "@/components/Essentials/NotificationContext";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
@@ -34,7 +33,6 @@ export default function RootLayout({
         <ClerkProvider>
           <NotificationProvider>
             <Toaster richColors />
-            <Navbar />
             <div>{children}</div>
           </NotificationProvider>
         </ClerkProvider>
