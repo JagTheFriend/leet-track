@@ -57,6 +57,7 @@ export async function sendReminderEmails() {
 
     const sentEmails = Promise.allSettled(
       users.map((user) => {
+        if (user.reminder.length === 0) return;
         const template = reminderEmailTemplate({
           userName: user.email.split("@")[0],
           reminders: user.reminder,
@@ -114,6 +115,7 @@ export async function sendDailyDigestEmail() {
     });
     const sentEmails = Promise.allSettled(
       users.map((user) => {
+        if (user.reminder.length === 0) return;
         const emailData = {
           userName: user.email.split("@")[0],
           todayReminders: user.reminder.map((r) => ({
@@ -188,6 +190,8 @@ export async function sendWeeklyReportEmail() {
 
     const sentEmails = Promise.allSettled(
       users.map(async (user) => {
+        if (user.reminder.length === 0) return;
+
         // Get completed reminders for this week
         const { reminder: completedReminders } = user;
         var [easyCompleted, mediumCompleted, hardCompleted] = [0, 0, 0];
