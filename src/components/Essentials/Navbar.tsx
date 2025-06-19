@@ -29,8 +29,11 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-[#362e7b] text-white py-1.5 flex items-center justify-between border-b border-gray-800 w-full h-16 flex-shrink-0 fixed top-0 right-0 z-50">
-      <h1 className="text-xl font-semibold ml-6">LeetTrack</h1>
+    <div className="bg-[#E5E5E5] text-white py-1.5 flex items-center justify-between border-b border-[#CCCCCC] w-full h-16 flex-shrink-0 fixed top-0 right-0 z-50 shadow-md">
+      <h1 className="text-xl font-semibold ml-6">
+        <span className="text-[#6366f1] font-bold">Leet</span>
+        <span className="text-black font-bold">Track</span>
+      </h1>
       <div className="flex items-center gap-4 mr-6">
         <div className="relative" ref={dropdownRef}>
           <button
