@@ -1,4 +1,6 @@
 import { db } from "@/lib/db";
+import { getQuestionOfTheDay } from "@lib/leetcode";
+import { PROBLEM_DIFFICULTY, Reminder } from "@prisma-client";
 import {
   dailyDigestTemplate,
   reminderEmailTemplate,
@@ -113,9 +115,24 @@ export async function sendDailyDigestEmail() {
         },
       },
     });
+
+    const QOTD = await getQuestionOfTheDay();
+
     const sentEmails = Promise.allSettled(
       users.map((user) => {
-        if (user.reminder.length === 0) return;
+        user.reminder.push({
+          id: `${user.externalUserId}-${QOTD.titleSlug}`,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          problemTitle: `QOTD: ${QOTD.questionTitle}`,
+          problemSlug: QOTD.titleSlug,
+          problemDifficulty:
+            QOTD.difficulty.toUpperCase() as PROBLEM_DIFFICULTY,
+          reminderStatus: "PENDING",
+          scheduledDate: new Date(),
+          userId: user.externalUserId,
+        } satisfies Reminder);
+
         const emailData = {
           userName: user.email.split("@")[0],
           todayReminders: user.reminder.map((r) => ({
