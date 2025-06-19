@@ -55,6 +55,7 @@ const Reminders = ({ reminders }: { reminders: Reminder[] }) => {
       {Object.entries(reminderData).map(([label, value]) => {
         const { icon } = iconMap[label as keyof ReminderStats];
         return (
+
           <div key={label} className="border w-full h-24 p-4">
             <div>
               <h3 className="text-sm text-gray-600 whitespace-nowrap inline">
@@ -63,6 +64,15 @@ const Reminders = ({ reminders }: { reminders: Reminder[] }) => {
               </h3>
               <p className="text-2xl font-bold text-gray-800">{value}</p>
             </div>
+
+          <div key={label} className="border w-full h-24 p-4 rounded-lg border-[#e5e7eb] shadow-md">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm text-[#6b7280] whitespace-nowrap">
+              {label}
+            </h3>
+            {icon}
+          </div>
+          <p className="text-2xl font-semibold text-gray-800">{value}
           </div>
         );
       })}

@@ -8,7 +8,7 @@ export const NotificationBell = () => {
 
   return (
     <div className="relative">
-      <Bell className="h-6 w-6" color="#FFD700" />
+      <Bell className="h-6 w-6" color="#6366f1" />
       {unreadCount > 0 && (
         <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-medium rounded-full px-1.5 py-0.5">
           {unreadCount > 9 ? "9+" : unreadCount}

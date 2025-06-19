@@ -59,10 +59,10 @@ export default function SearchFilter({
   };
 
   return (
-    <div className="p-4 bg-white border rounded">
+    <div className="p-4 rounded-lg shadow-md border border-[#e5e7eb]">
       <div>
-        <h2 className="text-xl font-bold">Search & Filter</h2>
-        <p className="text-sm text-muted-foreground font-semibold">
+        <h2 className="text-xl text-gray-800 font-semibold ">Search & Filter</h2>
+        <p className="text-sm text-muted-foreground ">
           Find and filter your reminders
         </p>
       </div>
@@ -72,7 +72,7 @@ export default function SearchFilter({
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             placeholder="Search problems..."
-            className="pl-8"
+            className="pl-8 border rounded-md focus:border-[#6366f1]"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
