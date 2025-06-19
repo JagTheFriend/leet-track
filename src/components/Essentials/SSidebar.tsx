@@ -1,3 +1,6 @@
+import { LayoutDashboard, CalendarRange, CalendarCog } from 'lucide-react';
+import {usePathname} from "next/navigation";
+
 import {
   Sidebar,
   SidebarContent,
@@ -14,34 +17,48 @@ const elements = [
   {
     title: "Dashboard",
     url: "dashboard",
+       icon: LayoutDashboard,
   },
   {
     title: "Calendar",
     url: "calendar",
+      icon: CalendarRange,
   },
   {
     title: "Settings",
     url: "settings",
+     icon: CalendarCog,
   },
 ];
 
 export function SSidebar() {
+  const pathname = usePathname();
   return (
-    <Sidebar className="h-screen flex flex-col justify-between pt-10 [&>div]:bg-[#bcb4cc] text-black">
-      <SidebarContent className="flex-1 flex flex-col px-6 pt-1">
+    <Sidebar className="h-screen flex flex-col justify-between pt-10 [&>div]:bg-[#f3f4f6] text-black hover:bg-[#e0e7ff] shadow-md">
+      <SidebarContent className="flex-1 flex flex-col px-2 ">
         <SidebarGroup>
-          <SidebarGroupLabel className="mb-4 text-lg font-bold"/>
+          <SidebarGroupLabel className="mb-1 "/>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-4 text-2xl font-bold">
-              {elements.map((ele) => (
-                <SidebarMenuItem key={ele.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={ele.url} prefetch>
-                      <span className="text-base">{ele.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu className="space-y-2">
+              {elements.map((ele) => {
+const isActive = (ele.url === "dashboard" && pathname === "/") || (ele.url === "calendar" && pathname === "/") ||  pathname.startsWith(`/${ele.url}`);
+
+                return (
+                  <SidebarMenuItem key={ele.title}>
+                   <SidebarMenuButton
+                   asChild 
+                   className={`flex items-center gap-3 text-[#374151] hover:bg-[#e0e7ff]
+                    ${isActive ? "bg-[#6366f1] text-white shadow-md" : ""}
+                    `}
+                   >
+                        <Link href={`/${ele.url}`} prefetch>
+                        <ele.icon size={20} className="shrink-0" />
+                        <span className="text-base">{ele.title}</span>
+                      </Link>
+                   </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

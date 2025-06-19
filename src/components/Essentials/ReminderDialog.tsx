@@ -57,7 +57,7 @@ export function AddReminderModal() {
       <DialogTrigger asChild>
         <div className="flex items-center justify-between">
           <Button
-            className="cursor-pointer flex items-center gap-2"
+            className=" bg-[#f3f4f6] cursor-pointer flex items-center gap-2 text-gray-800 shadow-md border border-[#e5e7eb] hover:bg-[#e0e7ff]"
             onClick={() => {
               setIsDialogOpen(true);
             }}
@@ -99,13 +99,15 @@ export function AddReminderModal() {
           <div className="grid gap-3">
             <Label htmlFor="schedule-date">Schedule Date</Label>
             <Input
-              min={new Date().toISOString().substring(0, 10)}
               id="schedule-date"
               name="schedule-date"
               type="date"
+              min={new Date().toISOString().split("T")[0]}
               onChange={(e) => {
                 const date = new Date(e.target.value);
-                if (date < new Date()) {
+                const yesterdayDate = new Date();
+                yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+                if (date < yesterdayDate) {
                   toast.error("Schedule date cannot be in the past");
                   setScheduleDate("");
                   return;
@@ -217,7 +219,9 @@ export function EditReminderModal({
               type="date"
               onChange={(e) => {
                 const date = new Date(e.target.value);
-                if (date < new Date()) {
+                const yesterdayDate = new Date();
+                yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+                if (date < yesterdayDate) {
                   toast.error("Schedule date cannot be in the past");
                   setScheduleDate("");
                   return;
