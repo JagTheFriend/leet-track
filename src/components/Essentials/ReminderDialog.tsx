@@ -99,13 +99,15 @@ export function AddReminderModal() {
           <div className="grid gap-3">
             <Label htmlFor="schedule-date">Schedule Date</Label>
             <Input
-              min={new Date().toISOString().substring(0, 10)}
               id="schedule-date"
               name="schedule-date"
               type="date"
+              min={new Date().toISOString().split("T")[0]}
               onChange={(e) => {
                 const date = new Date(e.target.value);
-                if (date < new Date()) {
+                const yesterdayDate = new Date();
+                yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+                if (date < yesterdayDate) {
                   toast.error("Schedule date cannot be in the past");
                   setScheduleDate("");
                   return;
@@ -217,7 +219,9 @@ export function EditReminderModal({
               type="date"
               onChange={(e) => {
                 const date = new Date(e.target.value);
-                if (date < new Date()) {
+                const yesterdayDate = new Date();
+                yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+                if (date < yesterdayDate) {
                   toast.error("Schedule date cannot be in the past");
                   setScheduleDate("");
                   return;
