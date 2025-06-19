@@ -121,5 +121,49 @@
   }
 }
 
+@layer utilities {
+  @keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.7s ease-out forwards;
+  }
+
+  .animate-slide-in-up {
+    animation: slide-in-up 0.7s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-in-out forwards;
+  }
+}
 
 
