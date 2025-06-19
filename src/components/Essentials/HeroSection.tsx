@@ -1,71 +1,46 @@
 "use client";
+
 import Link from "next/link";
 
 const HeroSection = () => {
   return (
     <>
-
-      <div className="absolute inset-0 -z-10 bg-white overflow-hidden">
-        <div className="absolute top-0 right-0 h-full w-[600px] translate-x-1/3 -translate-y-1/4 rounded-full bg-blue-400 opacity-50 blur-[120px]" />
-        <div className="absolute top-0 left-0 h-full w-[600px] -translate-x-1/3 -translate-y-1/4 rounded-full bg-purple-400 opacity-50 blur-[120px]" />
+      <div className="absolute inset-0 -z-10 bg-background transition-colors duration-700 overflow-hidden">
+        <div className="absolute top-0 left-1/3 h-full w-full -translate-x-1/7 -translate-y-1/4 rounded-full bg-purple-500 opacity-30 blur-[120px]" />
       </div>
 
-      <section className="mt-35 text-center px-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">
-          Set Reminders. Time. <br />
-          <span className="text-blue-500">Get Alerts</span>
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Learn by building real-world projects, guided by expert mentors. <br />
-          Get job-ready with full career support.
-        </p>
+      <div className="flex my-7 mx-5 flex-col md:flex-row items-center justify-between gap-10 px-6 pt-24 animate-fade-in">
+        <div className="max-w-xl opacity-0 animate-slide-in-left">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-500 dark:text-primary">
+            Where coders crush deadlines, <br />
+            <span className="text-foreground">one alert at a time.</span>
+          </h2>
+          <h5 className="text-lg text-muted-foreground mt-4">
+            Stay sharp. Solve smart. Never miss a challenge.
+          </h5>
 
-        <div className="mt-8 flex justify-center gap-4">
-          <button className="bg-blue-500 text-white px-6 py-3 rounded-full text-base font-semibold hover:cursor-pointer shadow-lg hover:shadow-blue-400/70 transition">
-            <Link href="/signup">Sign Up</Link>
-          </button>
-        </div>
-      </section>
-
-      <section id="feature" className="flex flex-col md:flex-row gap-6 mt-18 m-4 justify-between">
-
-        <div className="flex flex-col gap-4 rounded-lg p-2">
-          <div className="bg-white min-w-[10rem] h-35 rounded-lg p-4 shadow-md">
-            <span className="text-3xl font-semibold text-blue-400">No 1</span>
-          </div>
-          <div className="bg-white min-w-[10rem] rounded-lg flex flex-col p-4 shadow-md">
-            <span className="text-7xl text-blue-400">"</span>
-            <p className="text-gray-700">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio a
-              modi, eum explicabo, eaque quod accusantium obcaecati distinctio
-              saepe quo suscipit sapiente.
-            </p>
-            <img
-              className="rounded w-20 h-20 inline-block p-3 border-2 border-gray-200"
-              src="./google.png"
-              alt="Google Logo"
-            />
+          <div className="flex gap-4 mt-6">
+            <Link href="/signup">
+              <button className="hover:cursor-pointer bg-blue-500 text-primary-foreground px-6 py-2 rounded-full font-semibold hover:shadow-lg transition hover:scale-105">
+                Sign Up
+              </button>
+            </Link>
+            <Link href="/login">
+              <button className="hover:cursor-pointer  border-1 border-blue-500 text-primary px-6 py-2 rounded-full font-semibold hover:shadow-lg transition hover:scale-105">
+                Log In
+              </button>
+            </Link>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 p-2">
-          <div className="bg-white p-6 rounded-lg shadow-md text-center h-50 min-w-[25rem]">
-            img
-          </div>
-          <div className="flex flex-row gap-4 h-50">
-            <div className="rounded-lg bg-white p-4 shadow-md w-full text-center">
-              stats
-            </div>
-            <div className="rounded-lg bg-white p-4 shadow-md w-full text-center">
-              calls
-            </div>
-          </div>
+        <div className="max-w-sm w-full opacity-0 animate-slide-in-up">
+          <img
+            src="./close-up-programer.jpg"
+            alt="Developer working"
+            className="w-full h-auto rounded-xl shadow-xl shadow-primary/20 border border-border"
+          />
         </div>
-
-        <div className="bg-white rounded-lg p-4 shadow-md min-w-[20rem] text-center">
-          demands
-        </div>
-      </section>
+      </div>
     </>
   );
 };

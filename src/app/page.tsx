@@ -4,11 +4,13 @@ import LandingNavbar from "@components/Essentials/LandingNavbar";
 
 export default function Page() {
   return (
-  <>
-  <main>
-  <LandingNavbar/>
-  <HeroSection/>
-  </main>
-  </>
+    <>
+      <main>
+
+          <LandingNavbar />
+          <HeroSection />
+
+      </main>
+    </>
   )
 }
