@@ -1,23 +1,23 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import {
-  MapPin,
-  Phone,
-  Mail,
   Clock,
-  User,
+  Mail,
+  MapPin,
   MessageSquareText,
+  Phone,
   Send,
+  User,
 } from "lucide-react";
 
 export default function ContactUs() {
   return (
-    <section className="flex flex-col bg-[#f3f4f6]">
+    <section className="flex flex-col ">
 
-      <div className="bg-white px-6 py-16 text-center rounded-b-3xl shadow-sm">
+      <div className="bg-white px-6 py-16 text-center ">
         <div className="max-w-3xl mx-auto">
           <span className="inline-block bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-sm font-medium mb-4">
             Contact Us
@@ -57,7 +57,7 @@ export default function ContactUs() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-[#6366f1] mb-4">Send us a message</h2>
-            <form className="bg-[#ffffff] p-6 rounded-xl shadow-md space-y-4 text-[#1e293b]">
+            <form className="p-6 rounded-xl shadow-md space-y-4 text-[#1e293b]">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#6b7280]" />
