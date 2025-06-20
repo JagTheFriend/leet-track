@@ -1,11 +1,9 @@
 "use client";
-import HeroSection from "@components/Essentials/HeroSection";
-import LandingNavbar from "@components/Essentials/LandingNavbar";
-
-import Features from "@components/Essentials/Features";
-
 import ContactUs from "@/components/Essentials/ContactUs";
 import Footer from "@/components/Essentials/Footer";
+import Features from "@components/Essentials/Features";
+import HeroSection from "@components/Essentials/HeroSection";
+import LandingNavbar from "@components/Essentials/LandingNavbar";
 
 export default function Page() {
   return (
