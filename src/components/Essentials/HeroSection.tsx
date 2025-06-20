@@ -12,7 +12,7 @@ export default function HeroSection() {
           {/* Reminder Badge */}
           <div className="inline-flex items-center rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm bg-slate-50/80 dark:bg-slate-800/50 backdrop-blur-sm">
             <Bell className="h-4 w-4 text-slate-600 dark:text-slate-400 mr-2" />
-            <span className="text-slate-700 dark:text-slate-300 font-medium">Daily reminders at 19:55 IST</span>
+            <span className="text-slate-700 dark:text-slate-300 font-medium">Daily reminders at 20:15 IST</span>
           </div>
 
           {/* Heading */}

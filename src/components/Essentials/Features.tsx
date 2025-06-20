@@ -49,7 +49,7 @@ const features = [
     icon: Clock,
     title: "Daily Reminders",
     description:
-      "Get notified daily at 19:55 IST to ensure you're consistent with your coding practice.",
+      "Get notified daily at 20:15 IST to ensure you're consistent with your coding practice.",
     badge: "Scheduled",
     color:
       "bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400"
@@ -127,7 +127,7 @@ export default function FeaturesSection() {
           <div className="inline-flex items-center space-x-6 text-sm text-slate-500 dark:text-slate-400 bg-slate-100/50 dark:bg-slate-800/50 rounded-full px-6 py-3">
             <div className="flex items-center space-x-2">
               <Clock className="h-4 w-4" />
-              <span>Daily reminders at 19:55 IST</span>
+              <span>Daily reminders at 20:15 IST</span>
             </div>
             <div className="h-4 w-px bg-slate-300 dark:bg-slate-600" />
             <div className="flex items-center space-x-2">

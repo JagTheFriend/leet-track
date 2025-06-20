@@ -26,13 +26,15 @@ export default function Navbar() {
     }
   }
 
-  const navLinks = user
-    ? [{ tab: 'Dashboard', href: '/dashboard' }]
-    : [
-      { tab: 'Home', href: '#' },
-      { tab: 'Features', href: '#features' },
-      { tab: 'Contact', href: '#contact' },
-    ]
+  const baseLinks = [
+    { tab: 'Home', href: '#' },
+    { tab: 'Features', href: '#features' },
+    { tab: 'Contact', href: '#contact' }
+  ]
+
+  const dashboardLink = user ? [{ tab: 'Dashboard', href: '/dashboard' }] : []
+
+  const navLinks = [...baseLinks, ...dashboardLink]
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-900/60">
@@ -43,7 +45,7 @@ export default function Navbar() {
           <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
         </div>
 
-        {/* Desktop Nav */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map(({ tab, href }) => (
             <a
@@ -88,7 +90,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Buttons */}
         <div className="md:hidden flex items-center space-x-2">
           <Button
             variant="ghost"

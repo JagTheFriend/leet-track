@@ -41,7 +41,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
             </div>
             <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-sm">
-              Build consistent coding habits with daily reminders at 19:55 IST.
+              Build consistent coding habits with daily reminders at 20:15 IST.
               Track problems, manage your practice, and never miss a session.
             </p>
 
@@ -49,7 +49,7 @@ export default function Footer() {
             <div className="space-y-3 mb-6">
               <div className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
                 <Clock className="h-4 w-4" />
-                <span>Daily reminders at 19:55 IST</span>
+                <span>Daily reminders at 20:15 IST</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
                 <Bell className="h-4 w-4" />
@@ -144,14 +144,14 @@ export default function Footer() {
 
         <Separator className="my-8 bg-slate-200 dark:bg-slate-700" />
 
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="flex flex-col md:flex-row justify-between items-center md:space-y-0">
           <div className="text-slate-600 dark:text-slate-400 text-sm">
             © 2025 LeetTrack. All rights reserved.
           </div>
           <div className="flex items-center space-x-6 text-sm text-slate-600 dark:text-slate-400">
-            <span>Made with ❤️ for consistent coders</span>
+            <span>Made with ❤️ by USC KIIT Developers</span>
             <span>•</span>
-            <span>Daily at 19:55 IST</span>
+            <span>Daily at 20:15 IST</span>
           </div>
         </div>
       </div>
