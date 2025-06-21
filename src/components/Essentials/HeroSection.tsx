@@ -1,48 +1,46 @@
-"use client";
+'use client'
 
-import Link from "next/link";
+import { Button } from '@/components/ui/button'
+import { ArrowRight, Bell } from 'lucide-react'
+import Link from 'next/link'
 
-const HeroSection = () => {
+export default function HeroSection() {
   return (
-    <>
-      <div className="absolute inset-0 -z-10 bg-background transition-colors duration-700 overflow-hidden">
-        <div className="absolute top-0 left-1/3 h-full w-full -translate-x-1/7 -translate-y-1/4 rounded-full bg-purple-500 opacity-30 blur-[120px]" />
-      </div>
+    <section className="pt-10 pb-20 md:pt-20 md:pb-32 bg-gradient-to-b from-background to-slate-50/50 dark:to-slate-900/20">
+      <div className="container max-w-screen-xl px-4 md:px-8 mx-auto">
+        <div className="flex flex-col items-center text-center space-y-8 max-w-2xl mx-auto">
+          {/* Reminder Badge */}
+          <div className="inline-flex items-center rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm bg-slate-50/80 dark:bg-slate-800/50 backdrop-blur-sm">
+            <Bell className="h-4 w-4 text-slate-600 dark:text-slate-400 mr-2" />
+            <span className="text-slate-700 dark:text-slate-300 font-medium">Daily reminders at 20:15 IST</span>
+          </div>
 
-      <div className="flex my-7 mx-5 flex-col md:flex-row items-center justify-between gap-10 px-6 pt-24 animate-fade-in">
-        <div className="max-w-xl opacity-0 animate-slide-in-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-500 dark:text-primary">
-            Where coders crush deadlines, <br />
-            <span className="text-foreground">one alert at a time.</span>
-          </h2>
-          <h5 className="text-lg text-muted-foreground mt-4">
-            Stay sharp. Solve smart. Never miss a challenge.
-          </h5>
+          {/* Heading */}
+          <h1 className="text-balance text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+            Never Miss Your
+            <span className="text-slate-700 dark:text-slate-300 block mt-1">LeetCode Practice</span>
+          </h1>
 
-          <div className="flex gap-4 mt-6">
-            <Link href="/signup">
-              <button className="hover:cursor-pointer bg-blue-500 text-primary-foreground px-6 py-2 rounded-full font-semibold hover:shadow-lg transition hover:scale-105">
-                Sign Up
-              </button>
-            </Link>
-            <Link href="/login">
-              <button className="hover:cursor-pointer  border-1 border-blue-500 text-primary px-6 py-2 rounded-full font-semibold hover:shadow-lg transition hover:scale-105">
-                Log In
-              </button>
+          {/* Subheading */}
+          <p className="text-xl sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed text-balance">
+            Get notified daily and stay on track with your coding journey. <br />
+            Build habits that lead to consistent LeetCode success.
+          </p>
+
+          {/* CTA Button */}
+          <div className="w-full sm:w-auto">
+            <Link href="/dashboard">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 h-auto bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900"
+              >
+                Start Tracking Free
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </Link>
           </div>
         </div>
-
-        <div className="max-w-sm w-full opacity-0 animate-slide-in-up">
-          <img
-            src="./close-up-programer.jpg"
-            alt="Developer working"
-            className="w-full h-auto rounded-xl shadow-xl shadow-primary/20 border border-border"
-          />
-        </div>
       </div>
-    </>
-  );
-};
-
-export default HeroSection;
+    </section>
+  )
+}

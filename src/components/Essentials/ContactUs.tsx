@@ -1,115 +1,116 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Clock,
-  Mail,
-  MapPin,
-  MessageSquareText,
-  Phone,
-  Send,
-  User,
-} from "lucide-react";
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
+import { useState } from 'react'
 
-export default function ContactUs() {
+export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Form submitted:', formData)
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+  }
+
   return (
-    <section className="flex flex-col ">
-
-      <div className="bg-white px-6 py-16 text-center ">
-        <div className="max-w-3xl mx-auto">
-          <span className="inline-block bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-sm font-medium mb-4">
-            Contact Us
-          </span>
-          <h1 className="text-4xl font-bold text-[#1e293b] mb-4">Get in Touch</h1>
-          <p className="text-lg text-[#4b5563]">
-            Have questions or need more information? We're here to help.<br />
-            Reach out to our team for assistance anytime.
+    <section id="contact" className="py-24 bg-background">
+      <div className="container px-4 md:px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+            Get in Touch
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Have questions or need help setting up your routine? We're happy to hear from you!
           </p>
         </div>
-      </div>
-      <div className="py-12 px-4 md:px-20">
-        <div className="grid md:grid-cols-2 gap-10 max-w-7xl mx-auto">
-          <div>
-            <h2 className="text-2xl font-bold text-[#6366f1] mb-4">Contact Information</h2>
-            <p className="text-[#6b7280] mb-6">
-              Feel free to reach out to us through any of the following channels.
-            </p>
-            <div className="space-y-4 text-sm text-[#1e293b]">
-              <p className="flex items-start gap-2">
-                <MapPin className="h-5 w-5 text-[#6366f1]" />
-                Address
-              </p>
-              <p className="flex items-center gap-2">
-                <Phone className="h-5 w-5 text-[#6366f1]" />
-                083412 43888
-              </p>
-              <p className="flex items-center gap-2">
-                <Mail className="h-5 w-5 text-[#6366f1]" />
-                contact@leettrack.com
-              </p>
-              <p className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-[#6366f1]" />
-                Opens 9:30 AM Monday
-              </p>
-            </div>
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-[#6366f1] mb-4">Send us a message</h2>
-            <form className="p-6 rounded-xl shadow-md space-y-4 text-[#1e293b]">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#6b7280]" />
-                  <Input
-                    placeholder="First name"
-                    className="pl-10 bg-[#ffffff] text-[#1e293b] border-[#d1d5db]"
+
+        <div className="max-w-2xl mx-auto">
+          <Card className="p-6 md:p-10 shadow-md border border-slate-200 dark:border-slate-700">
+            <CardHeader className="pb-6">
+              <CardTitle className="text-xl md:text-2xl text-slate-900 dark:text-slate-100">Send us a Message</CardTitle>
+              <CardDescription className="text-slate-600 dark:text-slate-400">
+                We'll get back to you within 24 hours.
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-slate-700 dark:text-slate-300">Name</Label>
+                    <Input
+                      id="name"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      className="border-slate-300 dark:border-slate-600 focus:border-slate-500 dark:focus:border-slate-400"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-slate-700 dark:text-slate-300">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your@email.com"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className="border-slate-300 dark:border-slate-600 focus:border-slate-500 dark:focus:border-slate-400"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="subject" className="text-slate-700 dark:text-slate-300">Subject</Label>
+                  <Select onValueChange={(value) => handleInputChange('subject', value)}>
+                    <SelectTrigger className="border-slate-300 dark:border-slate-600">
+                      <SelectValue placeholder="Select a subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="general">General Inquiry</SelectItem>
+                      <SelectItem value="reminders">Reminder Setup Help</SelectItem>
+                      <SelectItem value="notifications">Notification Issues</SelectItem>
+                      <SelectItem value="dashboard">Dashboard Support</SelectItem>
+                      <SelectItem value="account">Account Management</SelectItem>
+                      <SelectItem value="feature">Feature Request</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-slate-700 dark:text-slate-300">Message</Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Tell us how we can help..."
+                    className="min-h-[120px] border-slate-300 dark:border-slate-600 focus:border-slate-500 dark:focus:border-slate-400"
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    required
                   />
                 </div>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#6b7280]" />
-                  <Input
-                    placeholder="Last name"
-                    className="pl-10 bg-[#ffffff] text-[#1e293b] border-[#d1d5db]"
-                  />
-                </div>
-              </div>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#6b7280]" />
-                <Input
-                  placeholder="Email"
-                  className="pl-10 bg-[#ffffff] text-[#1e293b] border-[#d1d5db]"
-                />
-              </div>
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#6b7280]" />
-                <Input
-                  placeholder="Phone (optional)"
-                  className="pl-10 bg-[#ffffff] text-[#1e293b] border-[#d1d5db]"
-                />
-              </div>
-              <div className="relative">
-                <MessageSquareText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#6b7280]" />
-                <Input
-                  placeholder="Subject"
-                  className="pl-10 bg-[#ffffff] text-[#1e293b] border-[#d1d5db]"
-                />
-              </div>
-              <Textarea
-                placeholder="Message"
-                className="bg-[#ffffff] text-[#1e293b] border-[#d1d5db]"
-                rows={5}
-              />
-              <Button
-                type="submit"
-                className="w-full flex items-center gap-2 bg-[#6366f1] text-white hover:bg-[#4f46e5]"
-              >
-                <Send className="h-4 w-4" /> Send Message
-              </Button>
-            </form>
-          </div>
+
+                <Button type="submit" className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
+                  Send Message
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
-  );
+  )
 }
