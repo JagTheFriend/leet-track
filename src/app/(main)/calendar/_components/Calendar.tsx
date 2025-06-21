@@ -45,7 +45,7 @@ export default function CalendarPage({ reminders }: { reminders: Reminder[] }) {
     <div className="pt-2 mt-0 px-6">
       <div className="mb-6 flex items-center space-x-2">
         
-        <h1 className="text-3xl font-bold">Calendar View</h1>
+        <h1 className="text-3xl font-bold dark:text-black">Calendar View</h1>
       </div>
 
       <div className="flex flex-wrap justify-between items-start mb-4">
@@ -65,11 +65,11 @@ export default function CalendarPage({ reminders }: { reminders: Reminder[] }) {
       <div className="flex items-center space-x-4 mb-4">
         <span className="flex items-center space-x-1">
           <CheckCircle className="w-4 h-4 text-green-500" />
-          <span className="text-sm">Completed</span>
+          <span className="text-sm dark:text-black">Completed</span>
         </span>
         <span className="flex items-center space-x-1">
           <XCircle className="w-4 h-4 text-red-400" />
-          <span className="text-sm">Not Completed</span>
+          <span className="text-sm dark:text-black">Not Completed</span>
         </span>
       </div>
 

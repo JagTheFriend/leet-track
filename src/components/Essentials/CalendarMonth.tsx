@@ -53,25 +53,23 @@ export default function CalendarMonth({
           )}
         </span>
       );
-    } else {
-      // If you want to show a cross for days with no reminders, uncomment below:
-      // statusIcon = <span className="ml-2 text-lg text-gray-300">✗</span>;
-      statusIcon = null;
-    }
+    } 
+
+    const dayBg = !isSameMonth(day , currentMonth)
+    ? "bg-gray-100 text-gray-400" : 
+    "bg-white text-black";
 
     days.push(
       <div
         key={day.toDateString()}
         className={`border min-h-[100px] text-sm relative rounded-xl p-3 shadow-sm hover:bg-gray-50 ${
-          isSameMonth(day, currentMonth)
-            ? "bg-white"
-            : "bg-gray-100 text-gray-400"
+          dayBg
         }`}
       >
         <div className="flex justify-between items-start mb-1">
           <div
-            className={`text-base font-semibold px-2 rounded ${
-              isToday ? "bg-indigo-100 text-indigo-700" : ""
+            className={`w-7 h-7 flex items-center justify-center text-sm font-semibold rounded-full ${
+              isToday ? "bg-[#6366f1] text-white " : ""
             }`}
           >
             {day.getDate()}
@@ -107,8 +105,8 @@ export default function CalendarMonth({
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden border">
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 text-center bg-gray-100 text-xs sm:text-sm font-medium p-2 rounded-t-xl">
+    <div className="bg-white  rounded-xl shadow-md overflow-hidden border">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 text-center bg-gray-100 dark:bg-[#d1d5db] dark:text-gray-700 text-xs sm:text-sm font-medium p-2 rounded-t-xl">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div key={day}>{day}</div>
         ))}

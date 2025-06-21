@@ -48,7 +48,9 @@ export default function CalendarActions({
         <ChevronDown className="absolute right-2 top-2 h-4 w-4 text-gray-500" />
       </div>
 
-      <Button variant="outline" onClick={goToToday}>
+      <Button variant="outline" onClick={goToToday}
+        className="dark:bg-[#d1d5db] dark:text-gray-700"
+      >
         Today
       </Button>
       <AddReminderModal />

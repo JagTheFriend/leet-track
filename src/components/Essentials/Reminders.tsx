@@ -16,19 +16,19 @@ const iconMap: Record<
   { icon: React.ReactNode; color: string }
 > = {
   "Total Reminders": {
-    icon: <CalendarDays className="text-blue-500" size={16} />,
+    icon: <CalendarDays className="text-blue-500" size={19} />,
     color: "text-blue-500",
   },
   "Upcoming Reminders": {
-    icon: <Clock className="text-orange-500" size={16} />,
+    icon: <Clock className="text-orange-500" size={19} />,
     color: "text-orange-500",
   },
   "Completed Questions": {
-    icon: <CheckCircle className="text-green-500" size={16} />,
+    icon: <CheckCircle className="text-green-500" size={19} />,
     color: "text-green-500",
   },
   "Missed Reminders": {
-    icon: <AlertTriangle className="text-red-500" size={16} />,
+    icon: <AlertTriangle className="text-red-500" size={19} />,
     color: "text-red-500",
   },
 };
@@ -54,7 +54,7 @@ const Reminders = ({ reminders }: { reminders: Reminder[] }) => {
         return (
           <div
             key={label}
-            className="border w-full h-24 p-4 rounded-lg border-[#e5e7eb] shadow-md"
+            className="border w-full h-24 p-4 rounded-lg border-[#e5e7eb] dark:border-[#818cf8] shadow-md"
           >
             <div className="flex items-center justify-between">
               <h3 className="text-sm text-[#6b7280] whitespace-nowrap">{label}</h3>

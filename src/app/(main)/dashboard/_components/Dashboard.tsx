@@ -17,7 +17,7 @@ export default function Dashboard({ reminders }: { reminders: Reminder[] }) {
   }, [reminders]);
 
   return (
-    <main className="  flex flex-col pt-2 mt-0">
+    <main className="  flex flex-col pt-2 mt-0 bg-white dark:bg-[#e2e8f0] min-h-screen">
       <div className="flex items-center justify-between mb-8">
         <WelcomeBanner />
         <div className="flex flex-row gap-2 items-center">

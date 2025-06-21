@@ -33,20 +33,20 @@ export default function RemainderTable({
   reminders: Reminder[];
 }) {
   return (
-    <div className="border p-4 rounded">
-      <h2 className="text-xl font-bold">Your Reminders</h2>
-      <p className="text-sm text-muted-foreground mb-2 font-semibold">
+    <div className="border border-[#e5e7eb] dark:border-[#6366f1]  p-4 rounded-lg shadow-md ">
+      <h2 className="text-xl text-gray-800 font-semibold">Your Reminders</h2>
+      <p className="text-sm text-muted-foreground mb-2 ">
         Manage your scheduled LeetCode problem reminders
       </p>
-      <Card>
+      <Card className="dark:bg-[#d1d5db] text-black ">
         <CardContent className="p-1">
           <Table>
             <TableHeader className="text-base">
-              <TableRow>
-                <TableHead>Question</TableHead>
-                <TableHead>Difficulty</TableHead>
-                <TableHead>Scheduled Date</TableHead>
-                <TableHead>Status</TableHead>
+              <TableRow className="border-b border-[#e5e7eb] dark:border-[#6366f1] bg-[#f3f4f6] ">
+                <TableHead className="dark:text-black">Question</TableHead>
+                <TableHead className="dark:text-black">Difficulty</TableHead>
+                <TableHead className="dark:text-black">Scheduled Date</TableHead>
+                <TableHead className="dark:text-black">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-base cursor-default">
@@ -56,23 +56,25 @@ export default function RemainderTable({
                   reminder={reminder}
                 >
                   <TableRow
-                    className={cn(
-                      "cursor-pointer",
-                      reminder.reminderStatus === "COMPLETED"
-                        ? "opacity-50"
-                        : reminder.reminderStatus === "UPCOMING"
-                        ? "opacity-75"
-                        : ""
-                    )}
-                    onClick={() => {
-                      window.open(
-                        `https://leetcode.com/problems/${reminder.problemSlug}`,
-                        "_blank"
-                      );
-                    }}
-                  >
-                    <TableRowContent reminder={reminder} />
-                  </TableRow>
+  className={cn(
+    "cursor-pointer",
+    "dark:border-b dark:border-b-[#6366f1] last:border-b-0", // <-- add this!
+    reminder.reminderStatus === "COMPLETED"
+      ? "opacity-50"
+      : reminder.reminderStatus === "UPCOMING"
+      ? "opacity-75"
+      : ""
+  )}
+  onClick={() => {
+    window.open(
+      `https://leetcode.com/problems/${reminder.problemSlug}`,
+      "_blank"
+    );
+  }}
+>
+  <TableRowContent reminder={reminder} />
+</TableRow>
+
                 </CustomContextMenu>
               ))}
             </TableBody>
@@ -117,7 +119,7 @@ function TableRowContent({ reminder }: { reminder: Reminder }) {
     <>
       <TableCell>
         <Link
-          className="flex flex-row gap-2 font-semibold hover:underline"
+          className="flex flex-row gap-2  hover:underline"
           href={`https://leetcode.com/problems/${reminder.problemSlug}`}
           target="_blank"
           prefetch

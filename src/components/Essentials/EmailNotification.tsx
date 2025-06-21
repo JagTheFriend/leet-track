@@ -17,11 +17,11 @@ export default function EmailNotifications({ userData }: { userData: User }) {
   const [weekly, setWeekly] = useState(userData.sendWeeklyReport);
 
   return (
-    <Card className="max-w-full">
+    <Card className="max-w-full rounded-lg shadow-md dark:bg-[#d1d5db] border dark:border-[#818cf8]">
       <CardHeader className="mt-4 -ml-2">
-        <CardTitle className="text-2xl font-bold">
+        <CardTitle className="text-2xl font-bold dark:text-black">
           <div className="flex items-center">
-            <Mail className="mt-0.5 mr-1.5" />
+            <Mail className="mt-0.5 mr-1.5 dark:text-black" />
             Email Notifications
           </div>
         </CardTitle>
@@ -32,18 +32,19 @@ export default function EmailNotifications({ userData }: { userData: User }) {
       <CardContent className="space-y-4.5 -ml-2">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-semibold">Enable Email Notifications</p>
+            <p className="text-sm font-semibold dark:text-black">Enable Email Notifications</p>
             <p className="text-xs text-muted-foreground font-semibold">
               Receive notifications via email
             </p>
           </div>
           <Switch checked={enabled} onCheckedChange={setEnabled} />
         </div>
-        <hr className="-mt-2" />
+        {/* Thin border only in dark mode */}
+        <hr className="my-3 border-t-0 dark:border-t dark:border-[#4b5563]" />
 
         <div className="flex items-center justify-between -mt-2">
           <div>
-            <p className="text-sm font-semibold">Reminder Alerts</p>
+            <p className="text-sm font-semibold dark:text-black">Reminder Alerts</p>
             <p className="text-xs text-muted-foreground font-semibold">
               Get notified about upcoming problems
             </p>
@@ -53,7 +54,7 @@ export default function EmailNotifications({ userData }: { userData: User }) {
 
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-semibold">Daily Digest</p>
+            <p className="text-sm font-semibold dark:text-black">Daily Digest</p>
             <p className="text-xs text-muted-foreground font-semibold">
               Summary of your daily progress
             </p>
@@ -63,7 +64,7 @@ export default function EmailNotifications({ userData }: { userData: User }) {
 
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-semibold">Weekly Report</p>
+            <p className="text-sm font-semibold dark:text-black">Weekly Report</p>
             <p className="text-xs text-muted-foreground font-semibold">
               Weekly progress and statistics
             </p>
@@ -71,8 +72,8 @@ export default function EmailNotifications({ userData }: { userData: User }) {
           <Switch checked={weekly} onCheckedChange={setWeekly} />
         </div>
 
-        <div className="flex justify-between">
-          <Button variant="outline" className="mb-4">
+        <div className="flex justify-between ">
+          <Button variant="outline" className="mb-4 hover:bg-[#e0e7ff] dark:bg-[#e0e7ff] dark:text-gray-600">
             Send Test Email
           </Button>
           <SaveNotificationSettingsButton

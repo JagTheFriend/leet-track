@@ -21,7 +21,7 @@ export default async function SettingsPage() {
     <main className="flex flex-col items-start pt-2 mt-0">
       <div className="w-full px-4 sm:px-8 ">
         <div className="items-center justify-between mb-6 mt-0">
-          <h1 className="text-3xl font-bold mb-1">Settings</h1>
+          <h1 className="text-3xl font-bold mb-1 dark:text-black">Settings</h1>
           <h5 className={`${roboto.className} text-xs text-slate-400`}>
             Manage your account settings and preferences.
           </h5>
@@ -30,7 +30,7 @@ export default async function SettingsPage() {
           <TabsList className="flex space-x-2 bg-muted p-1 rounded-lg w-fit">
             <TabsTrigger
               value="notifications"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-gray-300 text-gray-700 dark:bg-gray-500 dark:text-gray-200 font-semibold border border-gray-400 dark:border-gray-600"
             >
               <Bell className="h-4 w-4" />
               Notifications

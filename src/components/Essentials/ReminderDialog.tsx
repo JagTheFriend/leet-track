@@ -57,7 +57,7 @@ export function AddReminderModal() {
       <DialogTrigger asChild>
         <div className="flex items-center justify-between">
           <Button
-            className=" bg-[#f3f4f6] cursor-pointer flex items-center gap-2 text-gray-800 shadow-md border border-[#e5e7eb] hover:bg-[#e0e7ff]"
+            className=" bg-[#f3f4f6] cursor-pointer flex items-center gap-2 text-gray-800 shadow-md border border-[#e5e7eb]  hover:bg-[#e0e7ff] "
             onClick={() => {
               setIsDialogOpen(true);
             }}

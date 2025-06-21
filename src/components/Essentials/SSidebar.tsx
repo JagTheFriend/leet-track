@@ -34,7 +34,7 @@ const elements = [
 export function SSidebar() {
   const pathname = usePathname();
   return (
-    <Sidebar className="h-screen flex flex-col justify-between pt-10 [&>div]:bg-[#f3f4f6] text-black hover:bg-[#e0e7ff] shadow-md">
+    <Sidebar className="h-screen flex flex-col justify-between pt-10 [&>div]:bg-[#f3f4f6] [&>div]:dark:bg-[#1e293b] text-black hover:bg-[#e0e7ff] shadow-md">
       <SidebarContent className="flex-1 flex flex-col px-2 ">
         <SidebarGroup>
           <SidebarGroupLabel className="mb-1 "/>
@@ -47,8 +47,8 @@ const isActive = (ele.url === "dashboard" && pathname === "/") || (ele.url === "
                   <SidebarMenuItem key={ele.title}>
                    <SidebarMenuButton
                    asChild 
-                   className={`flex items-center gap-3 text-[#374151] hover:bg-[#e0e7ff]
-                    ${isActive ? "bg-[#6366f1] text-white shadow-md" : ""}
+                   className={`flex items-center gap-3 text-[#374151] dark:text-white hover:bg-[#e0e7ff] dark:hover:bg-[#4b5563]
+                    ${isActive ? "bg-[#6366f1] text-white   dark:text-[#0f172a]  shadow-md" : ""}
                     `}
                    >
                         <Link href={`/${ele.url}`} prefetch>
