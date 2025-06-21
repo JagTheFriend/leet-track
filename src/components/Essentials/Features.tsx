@@ -80,7 +80,7 @@ export default function FeaturesSection() {
       id="features"
       className="py-24 bg-slate-50/50 dark:bg-slate-900/20"
     >
-      <div className="container px-4 md:px-6">
+      <div className="w-full px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100">
             Everything you need to stay consistent

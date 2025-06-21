@@ -11,9 +11,12 @@ export default function Page() {
     <>
       <LandingNavbar />
       <HeroSection />
-      <Features />
+      <div className="flex justify-center">
+        <Features />
+      </div>
+     
       <main className="flex flex-col min-h-screen overflow-auto">
-        <div className="flex-grow">
+        <div className="flex-grow flex items-center justify-center">
           <ContactUs />
         </div>
         <Footer />
