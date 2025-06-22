@@ -19,7 +19,10 @@ export default function Page() {
         <div className="flex-grow flex items-center justify-center">
           <ContactUs />
         </div>
-        <Footer />
+        <div className="w-full flex justify-center">
+          <Footer />
+        </div>
+       
       </main>
     </>
   );

@@ -31,8 +31,8 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
-      <div className="container px-4 md:px-6 py-16">
+    <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 w-full">
+      <div className="mx-auto w-full max-w-none px-4 md:px-20 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
