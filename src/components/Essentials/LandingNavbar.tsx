@@ -1,12 +1,13 @@
 "use client"
 
 import { Button } from '@/components/ui/button'
-import { useUser } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
 import { Code2, Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const { user } = useUser()
+  const { signOut } = useClerk()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
 
@@ -73,10 +74,11 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                onClick={() => window.location.href = '/sign-in'}
               >
                 Log In
               </Button>
-              <Button className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
+              <Button className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900" onClick={() => window.location.href = '/signup'}>
                 Sign Up
               </Button>
             </>
@@ -84,6 +86,7 @@ export default function Navbar() {
             <Button
               variant="outline"
               className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+              onClick={() => signOut()}
             >
               Log Out
             </Button>
@@ -137,10 +140,11 @@ export default function Navbar() {
                 <Button
                   variant="outline"
                   className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+                  onClick={() => window.location.href = '/sign-in'}
                 >
                   Log In
                 </Button>
-                <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
+                <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900" onClick={() => window.location.href = '/signup'}>
                   Sign Up
                 </Button>
               </div>
@@ -148,6 +152,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 className="w-full mt-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+                onClick={() => signOut()}
               >
                 Log Out
               </Button>
