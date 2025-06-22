@@ -1,10 +1,8 @@
-
-
-// SSidebar.tsx
-import { useRef, useEffect, ReactNode } from "react";
-import { LayoutDashboard, CalendarRange, CalendarCog } from "lucide-react";
-import { usePathname } from "next/navigation";
+"use client";
+import { CalendarCog, CalendarRange, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ReactNode, useEffect, useRef } from "react";
 
 import {
   Sidebar,
@@ -48,7 +46,6 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
             {elements.map((ele) => {
               const isActive =
                 (ele.url === "dashboard" && pathname === "/") ||
-                (ele.url === "calendar" && pathname === "/") ||
                 pathname.startsWith(`/${ele.url}`);
               return (
                 <SidebarMenuItem key={ele.title}>
@@ -86,16 +83,15 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
 
       {/* Mobile sidebar */}
       {open && (
-        <div className="fixed inset-0 z-40 flex md:hidden" aria-modal="true" role="dialog">
+        <div className="fixed inset-0 z-40 flex md:hidden " role="dialog">
           {/* Clickable overlay */}
           <div
-            className="fixed inset-0 bg-black/20"
+            className="fixed inset-0 bg-black/20  "
             onClick={() => setOpen(false)}
-            aria-label="Close sidebar"
           />
-          
+
           {/* Sidebar panel */}
-          <Sidebar className="relative w-64 h-full flex flex-col justify-between pt-10 bg-[#f3f4f6] dark:bg-[#1e293b] shadow-md z-50">
+          <Sidebar className="relative w-64 h-full flex flex-col justify-between pt-10 bg-[#f3f4f6] dark:bg-[#1e293b] shadow-md z-50 left-0">
             {/* Close button */}
             <button
               ref={closeButtonRef}
