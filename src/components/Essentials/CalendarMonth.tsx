@@ -56,19 +56,17 @@ export default function CalendarMonth({
     } 
 
     const dayBg = !isSameMonth(day , currentMonth)
-    ? "bg-gray-100 text-gray-400" : 
-    "bg-white text-black";
+      ? "bg-gray-100 text-gray-400" 
+      : "bg-white text-black";
 
     days.push(
       <div
         key={day.toDateString()}
-        className={`border min-h-[100px] text-sm relative rounded-xl p-3 shadow-sm hover:bg-gray-50 ${
-          dayBg
-        }`}
+        className={`border min-h-[80px] sm:min-h-[100px] text-xs sm:text-sm relative rounded-xl p-2 sm:p-3 shadow-sm hover:bg-gray-50 transition-colors duration-100 ${dayBg}`}
       >
         <div className="flex justify-between items-start mb-1">
           <div
-            className={`w-7 h-7 flex items-center justify-center text-sm font-semibold rounded-full ${
+            className={`w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-xs sm:text-sm font-semibold rounded-full ${
               isToday ? "bg-[#6366f1] text-white " : ""
             }`}
           >
@@ -77,7 +75,7 @@ export default function CalendarMonth({
           {statusIcon}
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           {dayReminders.map((reminder, idx) => (
             <Link
               href={`https://leetcode.com/problems/${reminder.problemSlug}`}
@@ -105,13 +103,16 @@ export default function CalendarMonth({
   }
 
   return (
-    <div className="bg-white  rounded-xl shadow-md overflow-hidden border">
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 text-center bg-gray-100 dark:bg-[#d1d5db] dark:text-gray-700 text-xs sm:text-sm font-medium p-2 rounded-t-xl">
+    <div className="bg-white rounded-xl shadow-md overflow-x-auto border">
+      {/* Days of week header - FIXED */}
+      <div className="grid grid-cols-7 text-center bg-gray-100 dark:bg-[#d1d5db] dark:text-gray-700 text-xs sm:text-sm font-medium p-2 rounded-t-xl min-w-[700px]">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div key={day}>{day}</div>
         ))}
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-px">
+      
+      {/* Calendar grid - FIXED */}
+      <div className="grid grid-cols-7 gap-px min-w-[700px]">
         {days}
       </div>
     </div>

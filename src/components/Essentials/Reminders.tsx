@@ -48,19 +48,17 @@ const Reminders = ({ reminders }: { reminders: Reminder[] }) => {
   };
 
   return (
-    <div className="w-full gap-3 grid grid-cols-4">
+    <div className="w-full grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {Object.entries(reminderData).map(([label, value]) => {
         const { icon } = iconMap[label as keyof ReminderStats];
         return (
-
           <div
             key={label}
-            className="border w-full h-24 p-4 rounded-lg border-[#e5e7eb] dark:border-[#818cf8] shadow-md"
+            className="w-full min-h-24 p-4 rounded-lg border border-[#e5e7eb] dark:border-[#818cf8] shadow-md flex flex-col justify-between"
           >
             <div className="flex items-center justify-between">
               <h3 className="text-sm text-[#6b7280] whitespace-nowrap">{label}</h3>
-
-              {icon}
+              <span className="ml-2">{icon}</span>
             </div>
             <p className="text-2xl font-semibold text-gray-800">{value}</p>
           </div>

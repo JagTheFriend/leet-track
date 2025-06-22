@@ -12,7 +12,7 @@ export default function DashboardCalendarToggle() {
   return (
     <div className="relative">
       <Button
-        className=" bg-[#f3f4f6] text-gray-800 cursor-pointer flex items-center gap-2 shadow-md border border-[#e5e7eb] hover:bg-[#e0e7ff]"
+        className="bg-[#f3f4f6] text-gray-800  cursor-pointer flex items-center gap-2 shadow-md border border-[#e5e7eb] dark:border-[#e5e7eb] hover:bg-[#e0e7ff]"
         onClick={() => setShowCalendar((prev) => !prev)}
         type="button"
       >
@@ -20,12 +20,12 @@ export default function DashboardCalendarToggle() {
         {showCalendar ? "Hide Calendar" : "Show Calendar"}
       </Button>
       {showCalendar && (
-        <div className="absolute right-0 mt-2 z-50 bg-white border rounded-lg shadow-lg p-4 ">
+        <div className="absolute right-0 mt-2 z-50 bg-[white] text-gray-800 dark:bg-[#f3f4f6] dark:text-gray-800 border border-[#e5e7eb] dark:border-[#e5e7eb] rounded-lg shadow-lg p-4">
           <Calendar
             mode="single"
             selected={date}
             onSelect={setDate}
-            className="rounded-md border"
+            className="rounded-md border border-[#e5e7eb] dark:border-[#e5e7eb] bg-[#f3f4f6] text-gray-800 dark:bg-[#f3f4f6] dark:text-gray-800"
           />
         </div>
       )}
