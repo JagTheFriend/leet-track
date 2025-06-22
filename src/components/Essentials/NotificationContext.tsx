@@ -34,9 +34,9 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
       }
 
       const data = {
-        problemTitle: QOTD?.data?.questionTitle ?? "Title",
+        problemTitle: QOTD?.data?.questionTitle,
       };
-      addNotification(data.problemTitle ?? "Check QOTD");
+      addNotification(data.problemTitle ? `QOTD: ${data.problemTitle}` : "Check QOTD");
 
       const reminders = await getReminders();
       if (reminders?.serverError) {
