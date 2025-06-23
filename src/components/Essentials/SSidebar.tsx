@@ -1,5 +1,8 @@
-"use client";
-import { CalendarCog, CalendarRange, LayoutDashboard } from "lucide-react";
+
+"use client"
+
+// SSidebar.tsx
+import { CalendarCog, CalendarRange, LayoutDashboard, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useRef } from "react";
@@ -14,6 +17,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useClerk } from "@clerk/nextjs";
 
 interface SSidebarProps {
   children?: ReactNode;
@@ -30,12 +34,18 @@ const elements = [
 export function SSidebar({ children, open, setOpen }: SSidebarProps) {
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { signOut } = useClerk()
 
   useEffect(() => {
     if (open && closeButtonRef.current) {
       closeButtonRef.current.focus();
     }
   }, [open]);
+
+  // Placeholder sign out function
+  const handleSignOut = () => {
+    signOut({ redirectUrl: '/' })
+  };
 
   const SidebarLinks = (
     <SidebarContent className="flex-1 flex flex-col px-2">
@@ -69,11 +79,23 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
     </SidebarContent>
   );
 
+  // Sign out button (shared by desktop and mobile)
+  const SignOutButton = (
+    <button
+      onClick={handleSignOut}
+      className="w-full flex items-center gap-3 px-4 py-3 mb-6 text-[#ef4444] dark:text-[black] dark:bg-[#e2e8f0] hover:bg-[#fee2e2] dark:hover:bg-[#7f1d1d] rounded-lg transition-colors cursor-pointer"
+    >
+      <LogOut size={20} className="shrink-0" />
+      <span className="text-base font-medium">Sign Out</span>
+    </button>
+  );
+
   return (
     <div className="flex h-screen">
       {/* Desktop sidebar */}
       <Sidebar className="hidden md:flex md:w-64 h-full flex-col justify-between pt-10 [&>div]:bg-[#f3f4f6] [&>div]:dark:bg-[#1e293b] text-black dark:text-white hover:bg-[#e0e7ff] shadow-md">
-        {SidebarLinks}
+        <div className="flex-1 flex flex-col">{SidebarLinks}</div>
+        <div className="px-2">{SignOutButton}</div>
       </Sidebar>
 
       {/* Main content area */}
@@ -101,7 +123,8 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            {SidebarLinks}
+            <div className="flex-1 flex flex-col">{SidebarLinks}</div>
+            <div className="px-2">{SignOutButton}</div>
           </Sidebar>
         </div>
       )}
