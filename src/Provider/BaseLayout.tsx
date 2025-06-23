@@ -24,7 +24,7 @@ return (
 <div className="flex-shrink-0 h-16">
 <Navbar onHamburgerClick={() => setSidebarOpen(true)} />
 </div>
-<main className="flex-1 pt-14 px-6 pb-6 overflow-y-auto bg-white dark:bg-[#e2e8f0]">
+<main className="flex-1 pt-2 px-3 pb-6 overflow-y-auto bg-white dark:bg-[#e2e8f0]">
 {children}
 </main>
 </div>

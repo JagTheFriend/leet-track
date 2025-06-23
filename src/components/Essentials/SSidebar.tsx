@@ -83,7 +83,7 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
   const SignOutButton = (
     <button
       onClick={handleSignOut}
-      className="w-full flex items-center gap-3 px-4 py-3 mb-6 text-[#ef4444] dark:text-[black] dark:bg-[#e2e8f0] hover:bg-[#fee2e2] dark:hover:bg-[#7f1d1d] rounded-lg transition-colors cursor-pointer"
+      className="w-full flex items-center gap-3 px-4 py-3 mb-6 text-[#ef4444] dark:text-[black] dark:bg-[#d1d5db] hover:bg-[#fee2e2] dark:hover:bg-[#7f1d1d] rounded-lg transition-colors"
     >
       <LogOut size={20} className="shrink-0" />
       <span className="text-base font-medium">Sign Out</span>

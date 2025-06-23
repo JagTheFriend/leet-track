@@ -103,6 +103,7 @@ export function AddReminderModal() {
               name="schedule-date"
               type="date"
               min={new Date().toISOString().split("T")[0]}
+              className="dark:[color-scheme:dark]"
               onChange={(e) => {
                 const date = new Date(e.target.value);
                 const yesterdayDate = new Date();
