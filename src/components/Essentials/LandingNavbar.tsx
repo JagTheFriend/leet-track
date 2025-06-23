@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from '@/components/ui/button'
-import { useUser } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
 import { Code2, Menu, Moon, Sun, X } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -10,6 +10,7 @@ export default function Navbar() {
   const { user } = useUser()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const { signOut } = useClerk()
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark')
@@ -88,6 +89,9 @@ export default function Navbar() {
             <Button
               variant="outline"
               className="cursor-pointer border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+              onClick={() => {
+                signOut({ redirectUrl: "/" })
+              }}
             >
               Log Out
             </Button>
