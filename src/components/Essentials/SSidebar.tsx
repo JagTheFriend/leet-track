@@ -1,8 +1,10 @@
+"use client"
+
 // SSidebar.tsx
-import { useRef, useEffect, ReactNode } from "react";
-import { LayoutDashboard, CalendarRange, CalendarCog, LogOut } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { CalendarCog, CalendarRange, LayoutDashboard, LogOut } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ReactNode, useEffect, useRef } from "react";
 
 import {
   Sidebar,
@@ -14,6 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useClerk } from "@clerk/nextjs";
 
 interface SSidebarProps {
   children?: ReactNode;
@@ -30,6 +33,7 @@ const elements = [
 export function SSidebar({ children, open, setOpen }: SSidebarProps) {
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { signOut } = useClerk()
 
   useEffect(() => {
     if (open && closeButtonRef.current) {
@@ -39,8 +43,7 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
 
   // Placeholder sign out function
   const handleSignOut = () => {
-    // TODO: Replace with your actual sign out logic
-    alert("Signed out!");
+    signOut({ redirectUrl: '/' })
   };
 
   const SidebarLinks = (
@@ -80,7 +83,7 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
   const SignOutButton = (
     <button
       onClick={handleSignOut}
-      className="w-full flex items-center gap-3 px-4 py-3 mb-6 text-[#ef4444] dark:text-[black] dark:bg-[#e2e8f0] hover:bg-[#fee2e2] dark:hover:bg-[#7f1d1d] rounded-lg transition-colors"
+      className="w-full flex items-center gap-3 px-4 py-3 mb-6 text-[#ef4444] dark:text-[black] dark:bg-[#e2e8f0] hover:bg-[#fee2e2] dark:hover:bg-[#7f1d1d] rounded-lg transition-colors cursor-pointer"
     >
       <LogOut size={20} className="shrink-0" />
       <span className="text-base font-medium">Sign Out</span>
@@ -109,7 +112,7 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
             onClick={() => setOpen(false)}
             aria-label="Close sidebar"
           />
-          
+
           {/* Sidebar panel */}
           <Sidebar className="relative w-64 h-full flex flex-col justify-between pt-10 bg-[#f3f4f6] dark:bg-[#1e293b] shadow-md z-50">
             {/* Close button */}

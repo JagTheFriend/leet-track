@@ -1,14 +1,16 @@
 "use client"
 
 import { Button } from '@/components/ui/button'
-import { useUser } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
 import { Code2, Menu, Moon, Sun, X } from 'lucide-react'
+import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const { user } = useUser()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const { signOut } = useClerk()
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark')
@@ -71,19 +73,25 @@ export default function Navbar() {
           {!user ? (
             <>
               <Button
+                onClick={() => redirect("/login")}
                 variant="outline"
-                className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="cursor-pointer border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
               >
                 Log In
               </Button>
-              <Button className="bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
+              <Button
+                onClick={() => redirect("/signup")}
+                className="cursor-pointer bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
                 Sign Up
               </Button>
             </>
           ) : (
             <Button
               variant="outline"
-              className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+              className="cursor-pointer border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+              onClick={() => {
+                signOut({ redirectUrl: "/" })
+              }}
             >
               Log Out
             </Button>
