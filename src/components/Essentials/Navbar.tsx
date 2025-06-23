@@ -5,7 +5,7 @@ import { NotificationDropdown } from "@/components/Essentials/NotificationDropdo
 import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X , Code2} from "lucide-react";
 
 type NavbarProps = {
   sidebarOpen: boolean;
@@ -69,10 +69,10 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
         </button>
 
         {/* App Title */}
-        <h1 className="text-xl font-semibold ml-2">
-          <span className="text-[#6366f1] font-bold">Leet</span>
-          <span className="text-black dark:text-white font-bold">Track</span>
-        </h1>
+        <div className="flex items-center space-x-2">
+          <Code2 className="h-8 w-8 text-slate-700 dark:text-slate-300" />
+          <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
+        </div>
       </div>
 
       {/* Right Controls */}
