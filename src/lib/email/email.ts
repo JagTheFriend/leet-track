@@ -37,7 +37,7 @@ export async function sendReminderEmails() {
   try {
     const users = await db.user.findMany({
       where: {
-        sendEmailReminder: true,
+        sendUpcomingReminder: true,
       },
       include: {
         reminder: {
