@@ -149,7 +149,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 className="w-full mt-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
-                onClick={async () => await signOut({ redirectUrl: '/'})
+                onClick={async () => await signOut({ redirectUrl: '/' })}
               >
                 Log Out
               </Button>
