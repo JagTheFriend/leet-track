@@ -46,14 +46,23 @@ export const createReminder = authActionClient
       throw new Error("Question not found!");
     }
 
-    await ctx.db.reminder.create({
-      data: {
+    await ctx.db.reminder.upsert({
+      where: {
+        userId_problemSlug: {
+          userId: ctx.user.externalUserId,
+          problemSlug,
+        },
+      },
+      create: {
         userId: ctx.user.externalUserId,
         problemSlug,
         problemTitle: questionData.questionTitle,
         scheduledDate: scheduledDate,
         problemDifficulty:
           questionData.difficulty.toUpperCase() as PROBLEM_DIFFICULTY,
+      },
+      update: {
+        scheduledDate: scheduledDate,
       },
     });
     revalidatePath("/dashboard");
