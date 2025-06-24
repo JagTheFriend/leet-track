@@ -22,15 +22,19 @@ export default function DashboardCalendarToggle() {
 
       {showCalendar && (
         <div
-          className="absolute mt-2 z-50 bg-white text-gray-800 dark:bg-[#f3f4f6] dark:text-gray-800 
-          border border-[#e5e7eb] dark:border-[#e5e7eb] rounded-lg shadow-lg p-4 
-          w-[90vw] sm:w-auto left-0 sm:right-0"
+          className="
+               absolute mt-2 z-50 p-4 rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#e5e7eb]
+            bg-white text-gray-800 dark:bg-[#f3f4f6] dark:text-gray-800
+            w-[90vw] max-w-sm
+            left-[7%] -translate-x-0
+            sm:left-auto sm:right-0 sm:translate-x-0 sm:w-auto
+          "
         >
           <Calendar
             mode="single"
             selected={date}
             onSelect={setDate}
-            className="rounded-md border border-[#e5e7eb] dark:border-[#e5e7eb] 
+            className="w-full sm:w-auto rounded-md border border-[#e5e7eb] dark:border-[#e5e7eb] 
             bg-[#f3f4f6] text-gray-800 dark:bg-[#f3f4f6] dark:text-gray-800"
           />
         </div>
