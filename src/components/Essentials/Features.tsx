@@ -25,7 +25,7 @@ const features = [
       "Create your account in seconds and start tracking your LeetCode journey immediately.",
     badge: "Essential",
     color:
-      "bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400"
+      "bg-[#6366f1] text-white"
   },
   {
     icon: LogIn,
@@ -34,7 +34,7 @@ const features = [
       "Access your personalized dashboard with secure authentication and session management.",
     badge: "Secure",
     color:
-      "bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400"
+      "bg-[#6366f1] text-white"
   },
   {
     icon: Plus,
@@ -43,7 +43,7 @@ const features = [
       "Easily add and categorize LeetCode problems you want to revisit and practice regularly.",
     badge: "Core",
     color:
-      "bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400"
+      "bg-[#6366f1] text-white"
   },
   {
     icon: Clock,
@@ -52,7 +52,7 @@ const features = [
       "Get notified daily at 20:15 IST to ensure you're consistent with your coding practice.",
     badge: "Scheduled",
     color:
-      "bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400"
+      "bg-[#6366f1] text-white"
   },
   {
     icon: Bell,
@@ -61,7 +61,7 @@ const features = [
       "Receive email and push notifications to keep your practice routine on track.",
     badge: "Alert",
     color:
-      "bg-yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-400"
+      "bg-[#6366f1] text-white"
   },
   {
     icon: LayoutDashboard,
@@ -70,7 +70,7 @@ const features = [
       "Track your progress, problems, and reminders in one centralized place.",
     badge: "Hub",
     color:
-      "bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+      "bg-[#6366f1] text-white"
   }
 ]
 
@@ -99,7 +99,7 @@ export default function FeaturesSection() {
               <div className="p-6">
                 <CardHeader className="pb-4 px-0">
                   <div className="flex items-start justify-between mb-6">
-                    <div className={`p-2 rounded-lg ${feature.color}`}>
+                    <div className={`relative mb-4 h-12 w-12 rounded-br-2xl p-2.5 ${feature.color}`}>
                       <feature.icon className="h-6 w-6" />
                     </div>
                     <Badge
@@ -124,14 +124,14 @@ export default function FeaturesSection() {
         </div>
 
         <div className="text-center mt-20">
-          <div className="inline-flex items-center space-x-6 text-sm text-slate-500 dark:text-slate-400 bg-slate-100/50 dark:bg-slate-800/50 rounded-full px-6 py-3">
-            <div className="flex items-center space-x-2">
-              <Clock className="h-4 w-4" />
+          <div className="inline-flex items-center space-x-6 text-sm text-slate-500  border border-[#6366f1] backdrop-blur-md rounded-full px-6 py-3">
+            <div className="flex items-center space-x-2 text-slate-700">
+              <Clock className="h-4 w-4 text-slate-700" />
               <span>Daily reminders at 20:15 IST</span>
             </div>
             <div className="h-4 w-px bg-slate-300 dark:bg-slate-600" />
-            <div className="flex items-center space-x-2">
-              <Bell className="h-4 w-4" />
+            <div className="flex items-center space-x-2 text-slate-700">
+              <Bell className="h-4 w-4 text-slate-700" />
               <span>Email & Push notifications</span>
             </div>
           </div>

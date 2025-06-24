@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { useClerk, useUser } from '@clerk/nextjs'
-import { Code2, Menu, Moon, Sun, X } from 'lucide-react'
+import { Code2, Menu, X } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -11,7 +11,6 @@ export default function Navbar() {
   const { signOut } = useClerk()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
-  const { signOut } = useClerk()
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark')
@@ -60,16 +59,7 @@ export default function Navbar() {
             </a>
           ))}
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleDarkMode}
-            className="hover:bg-slate-100 dark:hover:bg-slate-800"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-slate-600 dark:text-slate-400" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-slate-600 dark:text-slate-400" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
+
 
           {!user ? (
             <>
@@ -82,7 +72,7 @@ export default function Navbar() {
               </Button>
               <Button
                 onClick={() => redirect("/signup")}
-                className="cursor-pointer bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
+                className="cursor-pointer bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
 
                 Sign Up
               </Button>
@@ -90,11 +80,11 @@ export default function Navbar() {
           ) : (
             <Button
               variant="outline"
-
               className="cursor-pointer border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
               onClick={() => {
                 signOut({ redirectUrl: "/" })
-          >
+              }}
+            >
               Log Out
             </Button>
           )}
@@ -102,15 +92,7 @@ export default function Navbar() {
 
         {/* Mobile Buttons */}
         <div className="md:hidden flex items-center space-x-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleDarkMode}
-            className="hover:bg-slate-100 dark:hover:bg-slate-800"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-slate-600 dark:text-slate-400" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-slate-600 dark:text-slate-400" />
-          </Button>
+
 
           <Button
             variant="ghost"
@@ -147,11 +129,11 @@ export default function Navbar() {
                 <Button
                   variant="outline"
                   className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
-                  onClick={() => window.location.href = '/sign-in'}
+                  onClick={() => redirect("/login")}
                 >
                   Log In
                 </Button>
-                <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900" onClick={() => window.location.href = '/signup'}>
+                <Button className="flex-1 bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900" onClick={() => redirect("/signup")}>
                   Sign Up
                 </Button>
               </div>
@@ -159,7 +141,9 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 className="w-full mt-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
-                onClick={() => signOut()}
+                onClick={() => {
+                  signOut({ redirectUrl: "/" })
+                }}
               >
                 Log Out
               </Button>

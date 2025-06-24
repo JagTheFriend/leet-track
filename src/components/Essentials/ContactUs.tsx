@@ -38,9 +38,9 @@ export default function ContactSection() {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <Card className="p-6 md:p-10 shadow-md border border-slate-200 dark:border-slate-700">
+          <Card className="md:p-5 shadow-md border border-slate-200 dark:border-slate-700 rounded-xl">
             <CardHeader className="pb-6">
-              <CardTitle className="text-xl md:text-2xl text-slate-900 dark:text-slate-100">Send us a Message</CardTitle>
+              <CardTitle className="text-xl md:text-2xl text-slate-900 dark:text-slate-100 mt-5">Send us a Message</CardTitle>
               <CardDescription className="text-slate-600 dark:text-slate-400">
                 We'll get back to you within 24 hours.
               </CardDescription>
@@ -103,7 +103,7 @@ export default function ContactSection() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
+                <Button type="submit" className="w-full bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
                   Send Message
                 </Button>
               </form>
