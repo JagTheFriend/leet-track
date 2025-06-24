@@ -2,7 +2,6 @@
 "use client";
 import { getQOTD, getReminders } from "@/app/(main)/dashboard/dashboard-action";
 import { useUser } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -23,11 +22,9 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { isSignedIn } = useUser();
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const pathname = usePathname()
 
   useEffect(() => {
     if (!isSignedIn) return;
-    if (["/", "/login", "/signup"].includes(pathname)) return;
 
     const getData = async () => {
       const QOTD = await getQOTD();
@@ -51,9 +48,12 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
       );
     };
     getData();
-  }, [isSignedIn, pathname]);
+  }, [isSignedIn]);
 
   const addNotification = (message: string) => {
+    // check if the message is already in the notifications array
+    if (notifications.some((n) => n.message === message)) return;
+
     setNotifications((prev) => [
       ...prev,
       { id: Date.now(), message, read: false },
