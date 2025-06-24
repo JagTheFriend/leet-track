@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function EmailNotifications({ userData }: { userData: User }) {
-  const [enabled, setEnabled] = useState(userData.sendEmailReminder);
   const [reminder, setReminder] = useState(userData.sendUpcomingReminder);
   const [daily, setDaily] = useState(userData.sendDailyDigest);
   const [weekly, setWeekly] = useState(userData.sendWeeklyReport);
@@ -30,18 +29,6 @@ export default function EmailNotifications({ userData }: { userData: User }) {
         </p>
       </CardHeader>
       <CardContent className="space-y-4.5 -ml-2">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-semibold dark:text-black">Enable Email Notifications</p>
-            <p className="text-xs text-muted-foreground font-semibold">
-              Receive notifications via email
-            </p>
-          </div>
-          <Switch checked={enabled} onCheckedChange={setEnabled} />
-        </div>
-        {/* Thin border only in dark mode */}
-        <hr className="my-3 border-t-0 dark:border-t dark:border-[#4b5563]" />
-
         <div className="flex items-center justify-between -mt-2">
           <div>
             <p className="text-sm font-semibold dark:text-black">Reminder Alerts</p>
@@ -75,14 +62,12 @@ export default function EmailNotifications({ userData }: { userData: User }) {
         <div className="flex justify-between ">
           <div className="ml-auto pb-4">
             <SaveNotificationSettingsButton
-            enabled={enabled}
-            reminder={reminder}
-            daily={daily}
-            weekly={weekly}
-           
-          />
+              reminder={reminder}
+              daily={daily}
+              weekly={weekly}
+            />
           </div>
-          
+
         </div>
       </CardContent>
     </Card>
@@ -90,12 +75,10 @@ export default function EmailNotifications({ userData }: { userData: User }) {
 }
 
 function SaveNotificationSettingsButton({
-  enabled,
   reminder,
   daily,
   weekly,
 }: {
-  enabled: boolean;
   reminder: boolean;
   daily: boolean;
   weekly: boolean;
@@ -120,7 +103,6 @@ function SaveNotificationSettingsButton({
       className="rounded"
       onClick={() => {
         execute({
-          sendEmailReminder: enabled,
           sendUpcomingReminder: reminder,
           sendDailyDigest: daily,
           sendWeeklyReport: weekly,

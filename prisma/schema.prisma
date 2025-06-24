@@ -15,16 +15,9 @@ model User {
   phoneNumber    String @unique
 
   // Email Reminders
-  sendEmailReminder    Boolean @default(true)
   sendUpcomingReminder Boolean @default(true)
   sendDailyDigest      Boolean @default(true)
   sendWeeklyReport     Boolean @default(true)
-
-  // Push Notifications
-  sendNotifReminder         Boolean @default(false)
-  sendUpcomingNotifReminder Boolean @default(false)
-  sendAchievementAlert      Boolean @default(false)
-  sendStreakReminder        Boolean @default(false)
 
   // User can set multiple reminders
   reminder Reminder[]
