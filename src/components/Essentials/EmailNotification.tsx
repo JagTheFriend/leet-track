@@ -73,15 +73,16 @@ export default function EmailNotifications({ userData }: { userData: User }) {
         </div>
 
         <div className="flex justify-between ">
-          <Button variant="outline" className="mb-4 hover:bg-[#e0e7ff] dark:bg-[#e0e7ff] dark:text-gray-600">
-            Send Test Email
-          </Button>
-          <SaveNotificationSettingsButton
+          <div className="ml-auto pb-4">
+            <SaveNotificationSettingsButton
             enabled={enabled}
             reminder={reminder}
             daily={daily}
             weekly={weekly}
+           
           />
+          </div>
+          
         </div>
       </CardContent>
     </Card>

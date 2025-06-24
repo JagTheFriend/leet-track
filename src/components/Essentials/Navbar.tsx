@@ -1,18 +1,16 @@
 "use client";
 
-import { NotificationBell } from "@/components/Essentials/NotificationBell";
-import { NotificationDropdown } from "@/components/Essentials/NotificationDropdown";
 import { UserButton } from "@clerk/nextjs";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Code2, Menu, Moon, Sun, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type NavbarProps = {
-  onHamburgerClick?: () => void;
-  sidebarOpen?: boolean;
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
 };
 
-const Navbar = ({ onHamburgerClick, sidebarOpen }: NavbarProps) => {
+const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
   const pathname = usePathname();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
@@ -58,7 +56,8 @@ const Navbar = ({ onHamburgerClick, sidebarOpen }: NavbarProps) => {
       <div className="flex items-center gap-3">
         <button
           className="md:hidden p-2 rounded bg-white dark:bg-[#1e293b] shadow"
-          onClick={onHamburgerClick}
+
+          onClick={() => setSidebarOpen(!sidebarOpen)}
           aria-label="Open sidebar"
         >
           {sidebarOpen ? (
@@ -69,17 +68,15 @@ const Navbar = ({ onHamburgerClick, sidebarOpen }: NavbarProps) => {
         </button>
 
         {/* App Title */}
-        <h1 className="text-xl font-semibold ml-2">
-          <span className="text-[#6366f1] font-bold">Leet</span>
-          <span className="text-black dark:text-white font-bold">Track</span>
-        </h1>
+        <div className="flex items-center space-x-2">
+          <Code2 className="h-8 w-8 text-slate-700 dark:text-slate-300" />
+          <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
+        </div>
       </div>
-
-      {/* Right Controls */}
-      <div className="flex items-center gap-4">
+      <div className="relative" ref={dropdownRef}>
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-full hover:bg-gray-200 dark:bg-gray-800 transition-colors"
+          className="p-2 ml-4 rounded-full hover:bg-gray-200 dark:bg-gray-800 transition-colors"
           aria-label="Toggle theme"
         >
           {isDark ? (
@@ -88,26 +85,9 @@ const Navbar = ({ onHamburgerClick, sidebarOpen }: NavbarProps) => {
             <Sun className="h-5 w-5 text-yellow-600" />
           )}
         </button>
-
-        <div className="relative" ref={dropdownRef}>
-          <button
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="p-2 hover:bg-gray-800 rounded-full transition-colors"
-            aria-label="Notifications"
-          >
-            <NotificationBell />
-          </button>
-          {dropdownOpen && (
-            <NotificationDropdown
-              open={dropdownOpen}
-              onClose={() => setDropdownOpen(false)}
-            />
-          )}
-        </div>
-
         <UserButton />
       </div>
-    </div >
+    </div>
   );
 };
 
