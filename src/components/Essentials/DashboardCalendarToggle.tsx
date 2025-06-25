@@ -23,11 +23,10 @@ export default function DashboardCalendarToggle() {
       {showCalendar && (
         <div
           className="
-               absolute mt-2 z-50 p-4 rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#e5e7eb]
+            absolute z-50 mt-2 rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#e5e7eb]
             bg-white text-gray-800 dark:bg-[#f3f4f6] dark:text-gray-800
-            w-[90vw] max-w-sm
-            left-[7%] -translate-x-0
-            sm:left-auto sm:right-0 sm:translate-x-0 sm:w-auto
+            left-1/2 -translate-x-1/2 w-[95vw] px-2 py-3
+            sm:left-auto sm:right-0 sm:translate-x-0 sm:w-auto sm:p-4
           "
         >
           <Calendar

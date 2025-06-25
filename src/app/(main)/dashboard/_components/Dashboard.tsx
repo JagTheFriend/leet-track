@@ -19,9 +19,12 @@ export default function Dashboard({ reminders }: { reminders: Reminder[] }) {
   return (
     <main className="flex flex-col pt-0 mt-0 bg-white dark:bg-[#e2e8f0] min-h-screen">
       {/* Header with responsive padding and stacking */}
-      <div className="flex flex-wrap items-center justify-between mb-8 px-4 sm:px-8">
-        <WelcomeBanner />
-        <div className="flex flex-col gap-2 sm:flex-row sm:gap-4 items-center mt-2 sm:mt-0">
+      <div className="flex flex-wrap items-baseline justify-between mb-8 px-4 sm:px-8">
+       
+          <WelcomeBanner />
+        
+        
+        <div className="flex flex-row gap-2 sm:flex-row sm:gap-4 items-center mt-8 sm:mt-0">
           <AddReminderModal />
           <DashboardCalendarToggle />
         </div>
@@ -29,7 +32,7 @@ export default function Dashboard({ reminders }: { reminders: Reminder[] }) {
 
       {/* Main content with responsive padding */}
       <div className="flex flex-col sm:flex-row items-start gap-4 mb-4 px-4 sm:px-8">
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <Reminders reminders={reminders} />
         </div>
       </div>

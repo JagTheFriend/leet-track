@@ -48,7 +48,7 @@ const Reminders = ({ reminders }: { reminders: Reminder[] }) => {
   };
 
   return (
-    <div className="w-full grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="w-full  grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {Object.entries(reminderData).map(([label, value]) => {
         const { icon } = iconMap[label as keyof ReminderStats];
         return (

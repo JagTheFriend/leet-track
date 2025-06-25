@@ -1,9 +1,11 @@
 "use client";
 
+import { NotificationBell } from "@/components/Essentials/NotificationBell";
+import { NotificationDropdown } from "@/components/Essentials/NotificationDropdown";
 import { UserButton } from "@clerk/nextjs";
-import { Code2, Menu, Moon, Sun, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Moon, Sun, Menu, X , Code2} from "lucide-react";
 
 type NavbarProps = {
   sidebarOpen: boolean;
@@ -56,9 +58,8 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
       <div className="flex items-center gap-3">
         <button
           className="md:hidden p-2 rounded bg-white dark:bg-[#1e293b] shadow"
-
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          aria-label="Open sidebar"
+          aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
         >
           {sidebarOpen ? (
             <X className="h-6 w-6 text-black dark:text-white" />
@@ -73,7 +74,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
           <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
         </div>
       </div>
-      <div className="relative" ref={dropdownRef}>
+
+      {/* Right Controls */}
+      <div className="flex items-center gap-4">
         <button
           onClick={toggleTheme}
           className="p-2 ml-4 rounded-full hover:bg-gray-200 dark:bg-gray-800 transition-colors"
@@ -85,6 +88,23 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
             <Sun className="h-5 w-5 text-yellow-600" />
           )}
         </button>
+
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+            aria-label="Notifications"
+          >
+            <NotificationBell />
+          </button>
+          {dropdownOpen && (
+            <NotificationDropdown
+              open={dropdownOpen}
+              onClose={() => setDropdownOpen(false)}
+            />
+          )}
+        </div>
+
         <UserButton />
       </div>
     </div>
