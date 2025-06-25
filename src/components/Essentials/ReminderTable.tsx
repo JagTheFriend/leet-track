@@ -117,7 +117,7 @@ function TableRowContent({ reminder, setSelectedReminder, setIsDialogOpen }: { r
 
   return (
     <>
-      <TableCell>
+      <TableCell key={Math.random()}>
         <Link
           className="flex flex-row gap-2  hover:underline"
           href={`https://leetcode.com/problems/${reminder.problemSlug}`}
@@ -128,16 +128,16 @@ function TableRowContent({ reminder, setSelectedReminder, setIsDialogOpen }: { r
           <SquareArrowOutUpRight size={10} className="mt-2" />
         </Link>
       </TableCell>
-      <TableCell>{getDifficultyBadge(reminder.problemDifficulty)}</TableCell>
-      <TableCell>
+      <TableCell key={Math.random()}>{getDifficultyBadge(reminder.problemDifficulty)}</TableCell>
+      <TableCell key={Math.random()}>
         {reminder.scheduledDate.toLocaleDateString("en-US", {
           year: "numeric",
           month: "short",
           day: "numeric",
         })}
       </TableCell>
-      <TableCell>{getStatusBadge(reminder.reminderStatus)}</TableCell>
-      <TableCell className="flex flex-row gap-2">
+      <TableCell key={Math.random()}>{getStatusBadge(reminder.reminderStatus)}</TableCell>
+      <TableCell key={Math.random()} className="flex flex-row gap-2">
         <Button
           className="cursor-pointer"
           size='sm'
