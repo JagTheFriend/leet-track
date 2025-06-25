@@ -36,7 +36,7 @@ export default function EmailNotifications({ userData }: { userData: User }) {
               Get notified about upcoming problems
             </p>
           </div>
-          <Switch checked={reminder} onCheckedChange={setReminder} />
+          <Switch checked={reminder} onCheckedChange={setReminder}  className="cursor-pointer"/>
         </div>
 
         <div className="flex items-center justify-between">
@@ -46,7 +46,7 @@ export default function EmailNotifications({ userData }: { userData: User }) {
               Summary of your daily progress
             </p>
           </div>
-          <Switch checked={daily} onCheckedChange={setDaily} />
+          <Switch checked={daily} onCheckedChange={setDaily} className="cursor-pointer"/>
         </div>
 
         <div className="flex items-center justify-between">
@@ -56,7 +56,7 @@ export default function EmailNotifications({ userData }: { userData: User }) {
               Weekly progress and statistics
             </p>
           </div>
-          <Switch checked={weekly} onCheckedChange={setWeekly} />
+          <Switch checked={weekly} onCheckedChange={setWeekly} className="cursor-pointer"/>
         </div>
 
         <div className="flex justify-between ">
@@ -100,7 +100,7 @@ function SaveNotificationSettingsButton({
   return (
     <Button
       disabled={isExecuting}
-      className="rounded"
+      className="rounded cursor-pointer"
       onClick={() => {
         execute({
           sendUpcomingReminder: reminder,
