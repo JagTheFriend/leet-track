@@ -10,7 +10,7 @@ export default function HeroSection() {
       <div className="container max-w-screen-xl px-4 md:px-8 mx-auto">
         <div className="flex flex-col items-center text-center space-y-8 max-w-2xl mx-auto">
           {/* Reminder Badge */}
-          <div className="inline-flex items-center rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2 text-sm bg-slate-50/80 dark:bg-slate-800/50 backdrop-blur-sm">
+          <div className="inline-flex items-center rounded-xl border border-[#6366f1] px-4 py-2 text-sm backdrop-blur-sm">
             <Bell className="h-4 w-4 text-slate-600 dark:text-slate-400 mr-2" />
             <span className="text-slate-700 dark:text-slate-300 font-medium">Daily reminders at 20:15 IST</span>
           </div>
@@ -18,7 +18,7 @@ export default function HeroSection() {
           {/* Heading */}
           <h1 className="text-balance text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
             Never Miss Your
-            <span className="text-slate-700 dark:text-slate-300 block mt-1">LeetCode Practice</span>
+            <span className="text-[#6366f1] block mt-1">LeetCode Practice</span>
           </h1>
 
           {/* Subheading */}
@@ -32,7 +32,7 @@ export default function HeroSection() {
             <Link href="/dashboard">
               <Button
                 size="lg"
-                className="text-lg px-8 py-6 h-auto bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900"
+                className="text-lg px-8 py-1.5 h-auto bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900 cursor-pointer"
               >
                 Start Tracking Free
                 <ArrowRight className="ml-2 h-5 w-5" />

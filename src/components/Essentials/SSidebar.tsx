@@ -1,3 +1,4 @@
+
 "use client"
 
 import { CalendarCog, CalendarRange, LayoutDashboard, LogOut } from "lucide-react";
@@ -53,7 +54,6 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
             {elements.map((ele) => {
               const isActive =
                 (ele.url === "dashboard" && pathname === "/") ||
-                (ele.url === "calendar" && pathname === "/") ||
                 pathname.startsWith(`/${ele.url}`);
               return (
                 <SidebarMenuItem key={ele.title}>
@@ -63,8 +63,8 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
                       ${isActive ? "bg-[#6366f1] text-white dark:text-[#0f172a] shadow-md" : ""}
                     `}
                   >
-                    <Link 
-                      href={`/${ele.url}`} 
+                    <Link
+                      href={`/${ele.url}`}
                       prefetch
                       onClick={() => setOpen(false)} // Close sidebar when link is clicked on mobile
                     >
@@ -106,16 +106,15 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
 
       {/* Mobile sidebar overlay */}
       {open && (
-        <div 
-          className="fixed inset-0 z-50 flex md:hidden" 
-          aria-modal="true" 
+        <div
+          className="fixed inset-0 z-50 flex md:hidden"
+          aria-modal="true"
           role="dialog"
         >
           {/* Clickable overlay */}
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setOpen(false)}
-            aria-label="Close sidebar"
           />
 
           {/* Mobile Sidebar panel */}
@@ -136,7 +135,7 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
             <div className="flex-1 flex flex-col pt-16 pb-4">
               {SidebarLinks}
             </div>
-            
+
             {/* Sign out button for mobile */}
             <div className="px-2 pb-4">
               {SignOutButton}
