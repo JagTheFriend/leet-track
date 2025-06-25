@@ -77,7 +77,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
 
       {/* Right Controls */}
       <div className="flex items-center gap-4">
-        <button
+        {/*<button
           onClick={toggleTheme}
           className="p-2 ml-4 rounded-full hover:bg-gray-200 dark:bg-gray-800 transition-colors"
           aria-label="Toggle theme"
@@ -87,7 +87,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
           ) : (
             <Sun className="h-5 w-5 text-yellow-600" />
           )}
-        </button>
+        </button>*/}
 
         <div className="relative" ref={dropdownRef}>
           <button
