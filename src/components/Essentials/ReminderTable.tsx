@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@components/ui/badge";
 import { Button } from "@components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@components/ui/dropdown-menu";
 import { cn } from "@lib/utils";
 import { PROBLEM_DIFFICULTY, Reminder, REMINDER_STATUS } from "@prisma-client";
-import { Loader, SquareArrowOutUpRight } from "lucide-react";
+import { EllipsisVertical, Loader, SquareArrowOutUpRight } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -138,18 +139,36 @@ function TableRowContent({ reminder, setSelectedReminder, setIsDialogOpen }: { r
       </TableCell>
       <TableCell key={Math.random()}>{getStatusBadge(reminder.reminderStatus)}</TableCell>
       <TableCell key={Math.random()} className="flex flex-row gap-2">
-        <Button
-          className="cursor-pointer"
-          size='sm'
-          onClick={() => {
-            setSelectedReminder(reminder)
-            setIsDialogOpen(true)
-          }}
-        >Edit</Button>
-        <DeleteReminderButton reminderId={reminder.id} />
+        <CustomDropDownMenu reminder={reminder} setIsDialogOpen={setIsDialogOpen} setSelectedReminder={setSelectedReminder} />
       </TableCell>
     </>
   );
+}
+
+function CustomDropDownMenu({ reminder, setIsDialogOpen, setSelectedReminder }: { reminder: Reminder, setIsDialogOpen: (v: boolean) => unknown, setSelectedReminder: (v: Reminder) => unknown }) {
+  return <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button
+        size='sm'
+        className="cursor-pointer"
+      >
+        <EllipsisVertical />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56" align="start">
+      <DropdownMenuItem
+        className="cursor-pointer"
+        onClick={() => {
+          setSelectedReminder(reminder)
+          setIsDialogOpen(true)
+        }}
+      >
+        Edit
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DeleteReminderButton reminderId={reminder.id} />
+    </DropdownMenuContent>
+  </DropdownMenu>
 }
 
 function DeleteReminderButton({ reminderId }: { reminderId: string }) {
@@ -170,8 +189,7 @@ function DeleteReminderButton({ reminderId }: { reminderId: string }) {
   }, [deleteReminderError, deleteReminderSuccess]);
 
   return (
-    <Button
-      size='sm'
+    <DropdownMenuItem
       disabled={isDeletingReminder}
       className="flex flex-row gap-2 cursor-pointer"
       onClick={() => {
@@ -179,7 +197,7 @@ function DeleteReminderButton({ reminderId }: { reminderId: string }) {
       }}
     >
       Delete {isDeletingReminder && <Loader className="animate-spin" />}
-    </Button>
+    </DropdownMenuItem>
   )
 
 }
