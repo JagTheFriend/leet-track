@@ -92,7 +92,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-slate-700 dark:text-slate-300">Subject</Label>
+                  <Label htmlFor="subject" className="text-slate-700 dark:text-slate-300 ">Subject</Label>
                   <Select onValueChange={(value) => handleInputChange('subject', value)}>
                     <SelectTrigger className="border-slate-300 dark:border-slate-600">
                       <SelectValue placeholder="Select a subject" />
@@ -119,12 +119,15 @@ export default function ContactSection() {
                     required
                   />
                 </div>
-                <Button
+                <div className="pb-4">
+                  <Button
                   type='submit'
                   disabled={isLoading}
-                  className="w-full bg-[#6366f1] hover:bg-[#6366f1]/90 text-white">
+                  className="w-full bg-[#6366f1] hover:bg-[#6366f1]/90 text-white cursor-pointer">
                   Send Message {isLoading && <LoaderIcon className='animate-spin' />}
                 </Button>
+                </div>
+                
               </form>
             </CardContent>
           </Card>

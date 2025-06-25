@@ -25,7 +25,7 @@ const features = [
       "Create your account in seconds and start tracking your LeetCode journey immediately.",
     badge: "Essential",
     color:
-      "bg-[#6366f1] text-white"
+      "bg-[#e2e8f0] text-[#818cf8]"
   },
   {
     icon: LogIn,
@@ -34,7 +34,7 @@ const features = [
       "Access your personalized dashboard with secure authentication and session management.",
     badge: "Secure",
     color:
-      "bg-[#6366f1] text-white"
+      "bg-[#e2e8f0] text-[#818cf8]"
   },
   {
     icon: Plus,
@@ -43,7 +43,7 @@ const features = [
       "Easily add and categorize LeetCode problems you want to revisit and practice regularly.",
     badge: "Core",
     color:
-      "bg-[#6366f1] text-white"
+      "bg-[#e2e8f0] text-[#818cf8]"
   },
   {
     icon: Clock,
@@ -52,7 +52,7 @@ const features = [
       "Get notified daily at 20:15 IST to ensure you're consistent with your coding practice.",
     badge: "Scheduled",
     color:
-      "bg-[#6366f1] text-white"
+      "bg-[#e2e8f0] text-[#818cf8]"
   },
   {
     icon: Bell,
@@ -61,7 +61,7 @@ const features = [
       "Receive email and push notifications to keep your practice routine on track.",
     badge: "Alert",
     color:
-      "bg-[#6366f1] text-white"
+      "bg-[#e2e8f0] text-[#818cf8]"
   },
   {
     icon: LayoutDashboard,
@@ -70,7 +70,7 @@ const features = [
       "Track your progress, problems, and reminders in one centralized place.",
     badge: "Hub",
     color:
-      "bg-[#6366f1] text-white"
+      "bg-[#e2e8f0] text-[#818cf8]"
   }
 ]
 
@@ -78,7 +78,7 @@ export default function FeaturesSection() {
   return (
     <section
       id="features"
-      className="py-24 bg-slate-50/50 dark:bg-slate-900/20"
+      className="w-full py-24 bg-slate-50/50 dark:bg-slate-900/20"
     >
       <div className="w-full px-4 md:px-6">
         <div className="text-center mb-16">
@@ -90,21 +90,23 @@ export default function FeaturesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-6 justify-items-center">
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="relative overflow-hidden border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md dark:hover:shadow-slate-900/20 transition-all duration-300 group"
+              className="relative max-w-md overflow-hidden border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md dark:hover:shadow-slate-900/20 transition-all duration-300 group"
             >
+              {/* Icon absolutely positioned in the card's top-left */}
+              <div className={`absolute top-0 left-0 h-12 w-12 rounded-tl-2xl p-2.5 ${feature.color}`}>
+                <feature.icon className="h-6 w-6" />
+              </div>
               <div className="p-6">
                 <CardHeader className="pb-4 px-0">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className={`relative mb-4 h-12 w-12 rounded-br-2xl p-2.5 ${feature.color}`}>
-                      <feature.icon className="h-6 w-6" />
-                    </div>
+                  <div className="flex items-start mb-6">
+                    {/* Badge pushed to the extreme right */}
                     <Badge
                       variant="secondary"
-                      className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+                      className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 ml-auto"
                     >
                       {feature.badge}
                     </Badge>
