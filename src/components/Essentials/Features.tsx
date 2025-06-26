@@ -2,15 +2,9 @@
 
 import { Badge } from "@/components/ui/badge"
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card"
-import {
   Bell,
   Clock,
+  Code2,
   LayoutDashboard,
   LogIn,
   Plus,
@@ -70,65 +64,85 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section
-      id="features"
-      className="w-full py-24"
-    >
-      <div className="w-full px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-            Everything you need to stay consistent
+    <section id="features" className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-white" />
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black,transparent)] -z-10" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative max-w-7xl">
+
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700 mb-6">
+            <Code2 className="h-4 w-4 mr-2" />
+            Powerful Features
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-900 leading-tight">
+            Everything you need to build
+            <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+              consistent coding habits
+            </span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            LeetTrack equips you with tools like smart reminders, dashboards, and tracking to boost your daily coding habit.
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            From smart reminders to progress tracking, LeetTrack provides all the tools
+            you need to maintain your daily coding practice and achieve your goals.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-6 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className="relative max-w-md overflow-hidden border border-slate-300 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md dark:hover:shadow-slate-900/20 transition-all duration-300 group"
+              className="group relative p-8 bg-white border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-200"
             >
-              {/* Icon absolutely positioned in the card's top-left */}
-              <div className={`absolute top-0 left-0 h-16 w-16 rounded-tl-2xl rounded-br-2xl p-5 ${feature.color}`}>
-                <feature.icon className="h-6 w-6" />
+              {/* Icon Background */}
+              <div className="relative mb-6">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className="h-7 w-7 text-white" />
+                </div>
+                <Badge
+                  variant="secondary"
+                  className="absolute -top-2 -right-2 text-xs font-medium px-2 py-1 bg-white border border-slate-200 text-slate-600 shadow-sm"
+                >
+                  {feature.badge}
+                </Badge>
               </div>
-              <div className="p-6">
-                <CardHeader className="pb-4 px-0">
-                  <div className="flex items-start mb-6">
-                    {/* Badge pushed to the extreme right */}
-                    <Badge
-                      variant="secondary"
-                      className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 ml-auto"
-                    >
-                      {feature.badge}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-lg font-semibold group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors text-slate-900 dark:text-slate-100">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="px-0 pt-2">
-                  <CardDescription className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
+
+              {/* Content */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
-            </Card>
+
+              {/* Hover Effect Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-purple-50/0 group-hover:from-blue-50/50 group-hover:to-purple-50/50 rounded-2xl transition-all duration-300 -z-10" />
+            </div>
           ))}
         </div>
 
+        {/* Bottom CTA */}
         <div className="text-center mt-20">
-          <div className="inline-flex items-center space-x-6 text-sm text-slate-500  border border-[#6366f1] backdrop-blur-md rounded-full px-6 py-3">
-            <div className="flex items-center space-x-2 text-slate-700">
-              <Clock className="h-4 w-4 text-slate-700" />
-              <span>Daily reminders at 20:15 IST</span>
+          <div className="inline-flex items-center space-x-8 text-sm bg-white border border-slate-200 rounded-2xl px-8 py-4 shadow-sm">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <Clock className="h-4 w-4 text-white" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-slate-900">Daily at 20:15 IST</div>
+                <div className="text-slate-600">Perfect reminder timing</div>
+              </div>
             </div>
-            <div className="h-4 w-px bg-slate-300 dark:bg-slate-600" />
-            <div className="flex items-center space-x-2 text-slate-700">
-              <Bell className="h-4 w-4 text-slate-700" />
-              <span>Email & Push notifications</span>
+            <div className="h-10 w-px bg-slate-200" />
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                <Bell className="h-4 w-4 text-white" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-slate-900">Smart Notifications</div>
+                <div className="text-slate-600">Email & push alerts</div>
+              </div>
             </div>
           </div>
         </div>

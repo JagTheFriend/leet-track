@@ -1,13 +1,16 @@
 import { Separator } from '@/components/ui/separator'
-import { Bell, Clock, Code2 } from 'lucide-react'
+import { Button } from '@components/ui/button'
+import { Bell, Clock, Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Footer() {
   const footerLinks = {
     product: [
-      { name: 'Dashboard' },
-      { name: 'Problem Tracking' },
-      { name: 'Reminders' },
-      { name: 'Notifications' }
+      { name: 'Dashboard', href: "/dashboard" },
+      { name: 'Problem Tracking', href: "/" },
+      { name: 'Reminders', href: "/" },
+      { name: 'Notifications', href: "/" }
     ],
     account: [
       { name: 'Sign Up', href: '/signup' },
@@ -21,74 +24,101 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 w-full">
-      <div className="mx-auto w-full max-w-none px-4 md:px-20 py-16">
+    <footer className="bg-white border-t border-slate-200/50 w-full">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <Code2 className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="bg-gradient-to-br from-blue-600 w-10 h-10 to-purple-600 rounded-xl flex items-center justify-center">
+                <Image src="/leettrack-logo.png" className="object-contain" height={1000} width={1000} alt="LeetTrack Logo" />
+              </div>
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
+                LeetTrack
+              </span>
             </div>
-            <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-sm">
-              Build consistent coding habits with daily reminders at 20:15 IST.
-              Track problems, manage your practice, and never miss a session.
+            <p className="text-slate-600 mb-8 max-w-sm leading-relaxed text-lg">
+              Build consistent coding habits with smart daily reminders and comprehensive
+              progress tracking. Join 100+ developers who never miss their practice.
             </p>
 
             {/* Key Features Highlight */}
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
-                <Clock className="h-4 w-4" />
-                <span>Daily reminders at 20:15 IST</span>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center space-x-3 text-slate-700">
+                <div className="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Clock className="h-4 w-4 text-blue-600" />
+                </div>
+                <span className="font-medium">Daily reminders at 20:15 IST</span>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
-                <Bell className="h-4 w-4" />
-                <span>Email & Push notifications</span>
+              <div className="flex items-center space-x-3 text-slate-700">
+                <div className="w-6 h-6 bg-green-100 rounded-lg flex items-center justify-center">
+                  <Bell className="h-4 w-4 text-green-600" />
+                </div>
+                <span className="font-medium">Smart email & push notifications</span>
               </div>
+            </div>
+
+            <div className="flex space-x-4">
+              <Button variant="outline" size="icon" className="border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all">
+                <Github className="h-5 w-5 text-slate-600 hover:text-blue-600" />
+              </Button>
+              <Button variant="outline" size="icon" className="border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all">
+                <Twitter className="h-5 w-5 text-slate-600 hover:text-blue-600" />
+              </Button>
+              <Button variant="outline" size="icon" className="border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all">
+                <Linkedin className="h-5 w-5 text-slate-600 hover:text-blue-600" />
+              </Button>
+              <Button variant="outline" size="icon" className="border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all">
+                <Mail className="h-5 w-5 text-slate-600 hover:text-blue-600" />
+              </Button>
             </div>
           </div>
 
           {/* Product Links */}
-          <div className='ml-4'>
-            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Features</h3>
-            <ul className="space-y-3 ">
+          <div>
+            <h3 className="font-bold mb-6 text-slate-900 text-lg">Features</h3>
+            <ul className="space-y-4">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
-                  <div className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                  <Link
+                    prefetch
+                    href={`${link.href}`}
+                    className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
-                  </div>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Account Links */}
-          <div className='ml-4'>
-            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Account</h3>
-            <ul className="space-y-3">
+          <div>
+            <h3 className="font-bold mb-6 text-slate-900 text-lg">Account</h3>
+            <ul className="space-y-4">
               {footerLinks.account.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
+                    prefetch
                     href={link.href}
-                    className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                    className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Support Links */}
-          <div className='ml-4'>
-            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Support</h3>
-            <ul className="space-y-3">
+          <div>
+            <h3 className="font-bold mb-6 text-slate-900 text-lg">Support</h3>
+            <ul className="space-y-4">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                    className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
                   </a>
@@ -96,15 +126,29 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Legal Links */}
+          {/* <div>
+            <h3 className="font-bold mb-6 text-slate-900 text-lg">Legal</h3>
+            <ul className="space-y-4">
+              {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    prefetch
+                    href={link.href}
+                    className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div> */}
         </div>
 
-        <Separator className="my-8 bg-slate-200 dark:bg-slate-700" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center md:space-y-0">
-          <div className="flex items-center space-x-6 text-sm text-slate-600 dark:text-slate-400">
-            <span>Made with ❤️ by USC KIIT Developers</span>
-          </div>
-          <div className="text-slate-600 dark:text-slate-400 text-sm">
+        <Separator className="my-12 bg-slate-200" />
+        <div className="flex items-center space-x-8 text-sm justify-center w-full text-slate-600">
+          <div className=" text-slate-600 text-sm font-medium">
             © 2025 LeetTrack. All rights reserved.
           </div>
         </div>

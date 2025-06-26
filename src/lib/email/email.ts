@@ -55,12 +55,41 @@ export async function sendReminderEmails() {
 
     const QOTD = await getQuestionOfTheDay();
 
-    const sentEmails = Promise.allSettled(
-      users.map((user) => {
-        user.reminder.push({
-          id: `${user.externalUserId}-${QOTD.titleSlug}`,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+    const sentEmails = users.map(async (user) => {
+      user.reminder.push({
+        id: `${user.externalUserId}-${QOTD.titleSlug}`,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        problemTitle: `QOTD: ${QOTD.questionTitle}`,
+        problemSlug: QOTD.titleSlug,
+        problemDifficulty: QOTD.difficulty.toUpperCase() as PROBLEM_DIFFICULTY,
+        reminderStatus: "PENDING",
+        scheduledDate: new Date(),
+        userId: user.externalUserId,
+        hasRead: false,
+      } satisfies Reminder);
+
+      const template = reminderEmailTemplate({
+        userName: user.email.split("@")[0],
+        reminders: user.reminder,
+      });
+
+      await sendEmail({
+        to: user.email,
+        subject: template.subject,
+        html: template.html,
+        text: template.text,
+      });
+
+      // Upsert reminder
+      await db.reminder.upsert({
+        where: {
+          userId_problemSlug: {
+            problemSlug: QOTD.titleSlug,
+            userId: user.externalUserId,
+          },
+        },
+        create: {
           problemTitle: `QOTD: ${QOTD.questionTitle}`,
           problemSlug: QOTD.titleSlug,
           problemDifficulty:
@@ -68,21 +97,17 @@ export async function sendReminderEmails() {
           reminderStatus: "PENDING",
           scheduledDate: new Date(),
           userId: user.externalUserId,
-        } satisfies Reminder);
+          hasRead: false,
+        },
+        update: {
+          reminderStatus: "PENDING",
+        },
+      });
+    });
 
-        const template = reminderEmailTemplate({
-          userName: user.email.split("@")[0],
-          reminders: user.reminder,
-        });
-        return sendEmail({
-          to: user.email,
-          subject: template.subject,
-          html: template.html,
-          text: template.text,
-        });
-      }),
-    );
-    sentEmails.catch((error) => {
+    const sentEmailsPromise = Promise.all(sentEmails);
+
+    sentEmailsPromise.catch((error) => {
       console.error("Error sending reminder email:", error);
       throw error;
     });

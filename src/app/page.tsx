@@ -1,30 +1,27 @@
 "use client";
 
 import ContactUs from "@/components/Essentials/ContactUs";
+import CTA from "@/components/Essentials/CTA";
 import Footer from "@/components/Essentials/Footer";
+import Stats from "@/components/Essentials/Stats";
+import Testimonials from "@/components/Essentials/Testimonials";
 import Features from "@components/Essentials/Features";
 import HeroSection from "@components/Essentials/HeroSection";
 import LandingNavbar from "@components/Essentials/LandingNavbar";
-import ShowUp from "@components/Essentials/ShowUp";
 
 export default function Page() {
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       <LandingNavbar />
-      <HeroSection />
-      <div className="flex justify-center">
+      <main className="relative">
+        <HeroSection />
+        <Stats />
         <Features />
-      </div>
-      <ShowUp />
-
-      <main className="flex flex-col min-h-screen overflow-auto">
-        <div className="flex-grow flex items-center justify-center">
-          <ContactUs />
-        </div>
-        <div className="w-full flex justify-center">
-          <Footer />
-        </div>
+        <Testimonials />
+        <CTA />
+        <ContactUs />
+        <Footer />
       </main>
-    </>
+    </div>
   );
 }
