@@ -1,10 +1,10 @@
-
+'use client';
 
 // SSidebar.tsx
-import { useRef, useEffect, ReactNode } from "react";
-import { LayoutDashboard, CalendarRange, CalendarCog } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { CalendarCog, CalendarRange, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 import {
   Sidebar,
@@ -15,12 +15,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 interface SSidebarProps {
-  children?: ReactNode;
-  open: boolean;
-  setOpen: (val: boolean) => void;
+  // No props needed here anymore for open/setOpen, as Sidebar component and useSidebar handle it
 }
 
 const elements = [
@@ -29,15 +28,17 @@ const elements = [
   { title: "Settings", url: "settings", icon: CalendarCog },
 ];
 
-export function SSidebar({ children, open, setOpen }: SSidebarProps) {
+export function SSidebar({ /* No props needed here anymore */ }: SSidebarProps) {
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
+  const { openMobile, setOpenMobile } = useSidebar();
+
   useEffect(() => {
-    if (open && closeButtonRef.current) {
+    if (openMobile && closeButtonRef.current) {
       closeButtonRef.current.focus();
     }
-  }, [open]);
+  }, [openMobile]);
 
   const SidebarLinks = (
     <SidebarContent className="flex-1 flex flex-col px-2">
@@ -58,7 +59,7 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
                       ${isActive ? "bg-[#6366f1] text-white dark:text-[#0f172a] shadow-md" : ""}
                     `}
                   >
-                    <Link href={`/${ele.url}`} prefetch>
+                    <Link href={`/${ele.url}`} prefetch onClick={() => setOpenMobile(false)}>
                       <ele.icon size={20} className="shrink-0" />
                       <span className="text-base">{ele.title}</span>
                     </Link>
@@ -73,42 +74,12 @@ export function SSidebar({ children, open, setOpen }: SSidebarProps) {
   );
 
   return (
-    <div className="flex h-screen">
-      {/* Desktop sidebar */}
-      <Sidebar className="hidden md:flex md:w-64 h-full flex-col justify-between pt-10 [&>div]:bg-[#f3f4f6] [&>div]:dark:bg-[#1e293b] text-black dark:text-white hover:bg-[#e0e7ff] shadow-md">
+    <>
+      <Sidebar
+        className="hidden md:flex md:w-64 h-full flex-col justify-between pt-10 [&>div]:bg-[#f3f4f6] [&>div]:dark:bg-[#1e293b] text-black dark:text-white hover:bg-[#e0e7ff] shadow-md"
+      >
         {SidebarLinks}
       </Sidebar>
-
-      {/* Main content area */}
-      <main className="flex-1 bg-white dark:bg-[#0f172a] overflow-y-auto mt-16">
-        {children}
-      </main>
-
-      {/* Mobile sidebar */}
-      {open && (
-        <div className="fixed inset-0 z-40 flex md:hidden" aria-modal="true" role="dialog">
-          {/* Clickable overlay */}
-          <div
-            className="fixed inset-0 bg-black/20"
-            onClick={() => setOpen(false)}
-            aria-label="Close sidebar"
-          />
-          
-          {/* Sidebar panel */}
-          <Sidebar className="relative w-64 h-full flex flex-col justify-between pt-10 bg-[#f3f4f6] dark:bg-[#1e293b] shadow-md z-50">
-            {/* Close button */}
-            <button
-              ref={closeButtonRef}
-              className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 focus:outline-none"
-              onClick={() => setOpen(false)}
-              aria-label="Close sidebar"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            {SidebarLinks}
-          </Sidebar>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
