@@ -24,8 +24,7 @@ const features = [
     description:
       "Create your account in seconds and start tracking your LeetCode journey immediately.",
     badge: "Essential",
-    color:
-      "bg-[#e2e8f0] text-[#818cf8]"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: LogIn,
@@ -33,8 +32,7 @@ const features = [
     description:
       "Access your personalized dashboard with secure authentication and session management.",
     badge: "Secure",
-    color:
-      "bg-[#e2e8f0] text-[#818cf8]"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: Plus,
@@ -42,8 +40,7 @@ const features = [
     description:
       "Easily add and categorize LeetCode problems you want to revisit and practice regularly.",
     badge: "Core",
-    color:
-      "bg-[#e2e8f0] text-[#818cf8]"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: Clock,
@@ -51,8 +48,7 @@ const features = [
     description:
       "Get notified daily at 20:15 IST to ensure you're consistent with your coding practice.",
     badge: "Scheduled",
-    color:
-      "bg-[#e2e8f0] text-[#818cf8]"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: Bell,
@@ -60,8 +56,7 @@ const features = [
     description:
       "Receive email and push notifications to keep your practice routine on track.",
     badge: "Alert",
-    color:
-      "bg-[#e2e8f0] text-[#818cf8]"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: LayoutDashboard,
@@ -69,8 +64,7 @@ const features = [
     description:
       "Track your progress, problems, and reminders in one centralized place.",
     badge: "Hub",
-    color:
-      "bg-[#e2e8f0] text-[#818cf8]"
+    color: "bg-[#6366f1] text-white"
   }
 ]
 
@@ -78,7 +72,7 @@ export default function FeaturesSection() {
   return (
     <section
       id="features"
-      className="w-full py-24 bg-slate-50/50 dark:bg-slate-900/20"
+      className="w-full py-24"
     >
       <div className="w-full px-4 md:px-6">
         <div className="text-center mb-16">
@@ -94,10 +88,10 @@ export default function FeaturesSection() {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="relative max-w-md overflow-hidden border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md dark:hover:shadow-slate-900/20 transition-all duration-300 group"
+              className="relative max-w-md overflow-hidden border border-slate-300 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md dark:hover:shadow-slate-900/20 transition-all duration-300 group"
             >
               {/* Icon absolutely positioned in the card's top-left */}
-              <div className={`absolute top-0 left-0 h-12 w-12 rounded-tl-2xl p-2.5 ${feature.color}`}>
+              <div className={`absolute top-0 left-0 h-16 w-16 rounded-tl-2xl rounded-br-2xl p-5 ${feature.color}`}>
                 <feature.icon className="h-6 w-6" />
               </div>
               <div className="p-6">

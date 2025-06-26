@@ -135,7 +135,7 @@ export default function Navbar() {
               <div className="flex space-x-2 pt-2">
                 <Button
                   variant="outline"
-                  className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+                  className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 cursor-pointer"
                   onClick={() => {
                     setIsMenuOpen(false);
                     push('/login');
@@ -143,7 +143,7 @@ export default function Navbar() {
                 >
                   Log In
                 </Button>
-                <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900"
+                <Button className="flex-1 bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900 cursor-pointer"
                   onClick={() => {
                     setIsMenuOpen(false);
                     push('/signup');
@@ -155,7 +155,7 @@ export default function Navbar() {
             ) : (
               <Button
                 variant="outline"
-                className="w-full mt-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
+                className="w-full mt-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 cursor-pointer"
                 onClick={async () => await signOut({ redirectUrl: '/' })}
               >
                 Log Out
