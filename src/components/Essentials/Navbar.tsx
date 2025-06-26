@@ -4,7 +4,6 @@ import MobileMenuTrigger from "@/components/Essentials/MobileMenuTrigger";
 import { NotificationBell } from "@/components/Essentials/NotificationBell";
 import { NotificationDropdown } from "@/components/Essentials/NotificationDropdown";
 import { UserButton } from "@clerk/nextjs";
-import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -32,13 +31,13 @@ const Navbar = () => {
     }
   }, []);
 
-  const toggleTheme = () => {
-    const html = document.documentElement;
-    const newTheme = isDark ? "light" : "dark";
-    html.classList.toggle("dark");
-    localStorage.setItem("theme", newTheme);
-    setIsDark(!isDark);
-  };
+  // const toggleTheme = () => {
+  //   const html = document.documentElement;
+  //   const newTheme = isDark ? "light" : "dark";
+  //   html.classList.toggle("dark");
+  //   localStorage.setItem("theme", newTheme);
+  //   setIsDark(!isDark);
+  // };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -92,7 +91,7 @@ const Navbar = () => {
 
       {/* Right Controls */}
       <div className="flex items-center gap-4">
-        <button
+        {/* <button
           onClick={toggleTheme}
           className="p-2 rounded-full hover:bg-gray-200 dark:bg-gray-800 transition-colors"
           aria-label="Toggle theme"
@@ -102,7 +101,7 @@ const Navbar = () => {
           ) : (
             <Sun className="h-5 w-5 text-yellow-600" />
           )}
-        </button>
+        </button> */}
 
         <div className="relative" ref={dropdownRef}>
           <button
