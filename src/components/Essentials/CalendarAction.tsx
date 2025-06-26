@@ -36,7 +36,7 @@ export default function CalendarActions({
         <select
           value={currentDate.getMonth()}
           onChange={(e) => onMonthChange(parseInt(e.target.value))}
-          className="appearance-none border rounded-md pl-8 pr-6 py-1.5 text-sm text-gray-700 bg-white shadow-sm focus:outline-none focus:ring-1 focus:ring-black"
+          className="appearance-none border rounded-md pl-8 pr-6 py-1.5 text-sm text-gray-700 bg-white shadow-sm focus:outline-none focus:ring-1 focus:ring-black cursor-pointer"
         >
           {monthNames.map((month, index) => (
             <option key={index} value={index}>

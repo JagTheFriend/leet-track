@@ -7,8 +7,11 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { useState } from 'react'
+import { toast } from 'sonner'
+import { addFeedback } from './action'
 
 export default function ContactSection() {
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,9 +19,22 @@ export default function ContactSection() {
     message: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    setIsLoading(true)
+    const data = await addFeedback(formData)
+    setIsLoading(false)
+    if (data?.serverError) {
+      toast.error("Error sending feedback")
+    } else {
+      toast.success('Feedback sent successfully')
+    }
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    })
   }
 
   const handleInputChange = (field: string, value: string) => {

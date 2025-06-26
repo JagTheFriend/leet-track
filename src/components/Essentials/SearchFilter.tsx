@@ -93,7 +93,7 @@ export default function SearchFilter({
         </div>
 
         <Select value={status} onValueChange={setStatus}>
-          <SelectTrigger className="w-36  border border-[#e5e7eb] dark:border-[#d1d5db] bg-white dark:bg-[#e0e7ff] text-gray-700 dark:text-gray-600 focus:border-[#6366f1] focus:ring-0 focus:outline-none">
+          <SelectTrigger className="w-36  border border-[#e5e7eb] dark:border-[#d1d5db] bg-white dark:bg-[#e0e7ff] text-gray-700 dark:text-gray-600 focus:border-[#6366f1] focus:ring-0 focus:outline-none cursor-pointer">
             <SelectValue 
             placeholder="All Status"
               className="text-gray-700 dark:text-gray-200"
@@ -108,7 +108,7 @@ export default function SearchFilter({
         </Select>
 
         <Select value={level} onValueChange={setLevel}>
-          <SelectTrigger className="w-36  border border-[#e5e7eb] dark:border-[#d1d5db] bg-white dark:bg-[#e0e7ff] text-gray-700 dark:text-gray-600 focus:border-[#6366f1] focus:ring-0 focus:outline-none">
+          <SelectTrigger className="w-36  border border-[#e5e7eb] dark:border-[#d1d5db] bg-white dark:bg-[#e0e7ff] text-gray-700 dark:text-gray-600 focus:border-[#6366f1] focus:ring-0 focus:outline-none cursor-pointer">
             <SelectValue placeholder="All Levels" 
                 className="text-gray-700 dark:text-gray-900"
                 />

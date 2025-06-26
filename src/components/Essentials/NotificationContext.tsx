@@ -34,9 +34,9 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
       }
 
       const data = {
-        problemTitle: QOTD?.data?.questionTitle ?? "Title",
+        problemTitle: QOTD?.data?.questionTitle,
       };
-      addNotification(data.problemTitle ?? "Check QOTD");
+      addNotification(data.problemTitle ? `QOTD: ${data.problemTitle}` : "Check QOTD");
 
       const reminders = await getReminders();
       if (reminders?.serverError) {
@@ -51,6 +51,9 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [isSignedIn]);
 
   const addNotification = (message: string) => {
+    // check if the message is already in the notifications array
+    if (notifications.some((n) => n.message === message)) return;
+
     setNotifications((prev) => [
       ...prev,
       { id: Date.now(), message, read: false },

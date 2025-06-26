@@ -17,6 +17,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useClerk } from "@clerk/nextjs";
 
 interface SSidebarProps {
   // No props needed here anymore for open/setOpen, as Sidebar component and useSidebar handle it
@@ -31,6 +32,7 @@ const elements = [
 export function SSidebar({ /* No props needed here anymore */ }: SSidebarProps) {
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { signOut } = useClerk();
 
   const { openMobile, setOpenMobile } = useSidebar();
 
@@ -39,6 +41,10 @@ export function SSidebar({ /* No props needed here anymore */ }: SSidebarProps) 
       closeButtonRef.current.focus();
     }
   }, [openMobile]);
+
+  const handleSignOut = () => {
+    signOut({ redirectUrl: '/' });
+  };
 
   const SidebarLinks = (
     <SidebarContent className="flex-1 flex flex-col px-2">
@@ -49,19 +55,18 @@ export function SSidebar({ /* No props needed here anymore */ }: SSidebarProps) 
             {elements.map((ele) => {
               const isActive =
                 (ele.url === "dashboard" && pathname === "/") ||
-                (ele.url === "calendar" && pathname === "/") ||
                 pathname.startsWith(`/${ele.url}`);
               return (
                 <SidebarMenuItem key={ele.title}>
                   <SidebarMenuButton
                     asChild
-                    className={`flex items-center gap-3 text-[#374151] dark:text-white hover:bg-[#e0e7ff] dark:hover:bg-[#4b5563]
+                    className={`flex items-center gap-3 text-[#374151] dark:text-white hover:bg-[#e0e7ff] dark:hover:bg-[#4b5563] p-3 rounded-lg w-full text-left
                       ${isActive ? "bg-[#6366f1] text-white dark:text-[#0f172a] shadow-md" : ""}
                     `}
                   >
                     <Link href={`/${ele.url}`} prefetch onClick={() => setOpenMobile(false)}>
                       <ele.icon size={20} className="shrink-0" />
-                      <span className="text-base">{ele.title}</span>
+                      <span className="text-base font-medium">{ele.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -71,6 +76,16 @@ export function SSidebar({ /* No props needed here anymore */ }: SSidebarProps) 
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarContent>
+  );
+
+  const SignOutButton = (
+    <button
+      onClick={handleSignOut}
+      className="w-full flex items-center gap-3 px-4 py-3 mb-6 bg-[#d1d5db] text-black dark:text-black dark:bg-[#d1d5db] hover:bg-[#fee2e2] dark:hover:bg-[#7f1d1d] rounded-lg transition-colors cursor-pointer"
+    >
+      <LogOut size={20} className="shrink-0" />
+      <span className="text-base font-medium">Sign Out</span>
+    </button>
   );
 
   return (

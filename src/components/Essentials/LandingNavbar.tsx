@@ -7,12 +7,20 @@ import { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const { user } = useUser()
+  const { signOut } = useClerk()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const { push, prefetch } = useRouter()
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark')
     setIsDark(isDarkMode)
+  }, [])
+
+  useEffect(() => {
+    prefetch("/login")
+    prefetch("/signup")
+    prefetch("/dashboard")
   }, [])
 
   const toggleDarkMode = () => {

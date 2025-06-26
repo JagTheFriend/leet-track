@@ -285,15 +285,15 @@ export const weeklyReportTemplate = (data: WeeklyReportData) => {
             <h3 style="color: #2d3748; margin: 30px 0 15px 0;">📊 Difficulty Breakdown</h3>
             <div style="background: white; padding: 20px; border-radius: 8px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 10px; background: #f0fff4; border-radius: 6px;">
-                <span style="font-weight: bold;">Easy</span>
+                <span style="font-weight: bold;padding-right: 10px;">Easy</span>
                 <span style="background: #00b8a3; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold;">${data.easyCompleted}</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 10px; background: #fffbf0; border-radius: 6px;">
-                <span style="font-weight: bold;">Medium</span>
+                <span style="font-weight: bold;padding-right: 10px;">Medium</span>
                 <span style="background: #ffc01e; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold;">${data.mediumCompleted}</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 10px; background: #fff5f5; border-radius: 6px;">
-                <span style="font-weight: bold;">Hard</span>
+                <span style="font-weight: bold;padding-right: 10px;">Hard</span>
                 <span style="background: #ff375f; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold;">${data.hardCompleted}</span>
               </div>
             </div>

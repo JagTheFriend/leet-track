@@ -35,7 +35,7 @@ export default function MonthNavigator({
         variant="outline"
         size="icon"
         onClick={goToPreviousMonth}
-        className="hover:bg-[#e0e7ff] dark:bg-[#6366f1] transition-colors"
+        className="hover:bg-[#e0e7ff] dark:bg-[#6366f1] transition-colors cursor-pointer"
       >
         <ChevronLeft className="w-4 h-4" />
       </Button>
@@ -48,7 +48,7 @@ export default function MonthNavigator({
         variant="outline"
         size="icon"
         onClick={goToNextMonth}
-        className="hover:bg-[#e0e7ff] dark:bg-[#6366f1] transition-colors"
+        className="hover:bg-[#e0e7ff] dark:bg-[#6366f1] transition-colors cursor-pointer"
       >
         <ChevronRight className="w-4 h-4" />
       </Button>

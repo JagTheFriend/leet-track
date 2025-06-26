@@ -11,7 +11,6 @@ export const getSettings = authActionClient.action(async ({ ctx }) => {
 });
 
 const updateEmailNotificationSettingsSchema = z.object({
-  sendEmailReminder: z.boolean(),
   sendUpcomingReminder: z.boolean(),
   sendDailyDigest: z.boolean(),
   sendWeeklyReport: z.boolean(),

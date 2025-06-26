@@ -22,7 +22,22 @@ const Navbar = () => {
       setIsDark(true);
     }
   }, []);
+  useEffect(() => {
+    const html = document.documentElement;
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark") {
+      html.classList.add("dark");
+      setIsDark(true);
+    }
+  }, []);
 
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    const newTheme = isDark ? "light" : "dark";
+    html.classList.toggle("dark");
+    localStorage.setItem("theme", newTheme);
+    setIsDark(!isDark);
+  };
   const toggleTheme = () => {
     const html = document.documentElement;
     const newTheme = isDark ? "light" : "dark";
@@ -43,7 +58,22 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
+  if (pathname === "/login" || pathname === "/signup") {
+    return null;
+  }
   if (pathname === "/login" || pathname === "/signup") {
     return null;
   }
@@ -90,7 +120,26 @@ const Navbar = () => {
             />
           )}
         </div>
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+            aria-label="Notifications"
+          >
+            <NotificationBell />
+          </button>
+          {dropdownOpen && (
+            <NotificationDropdown
+              open={dropdownOpen}
+              onClose={() => setDropdownOpen(false)}
+            />
+          )}
+        </div>
 
+        <UserButton />
+      </div>
+    </div>
+  );
         <UserButton />
       </div>
     </div>

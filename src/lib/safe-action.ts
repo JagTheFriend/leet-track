@@ -8,7 +8,7 @@ import { db } from "./db";
 class ActionError extends Error {}
 
 // Base client.
-const actionClient = createSafeActionClient({
+export const actionClient = createSafeActionClient({
   handleServerError(e) {
     console.error("Action error:", e.message);
 

@@ -1,33 +1,23 @@
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Bell, Clock, Code2, Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import { Bell, Clock, Code2 } from 'lucide-react'
 
 export default function Footer() {
   const footerLinks = {
     product: [
-      { name: 'Dashboard', href: '#dashboard' },
-      { name: 'Problem Tracking', href: '#tracking' },
-      { name: 'Reminders', href: '#reminders' },
-      { name: 'Notifications', href: '#notifications' }
+      { name: 'Dashboard' },
+      { name: 'Problem Tracking' },
+      { name: 'Reminders' },
+      { name: 'Notifications' }
     ],
     account: [
-      { name: 'Sign Up', href: '#signup' },
-      { name: 'Log In', href: '#login' },
-      { name: 'Profile', href: '#profile' },
-      { name: 'Settings', href: '#settings' }
+      { name: 'Sign Up', href: '/signup' },
+      { name: 'Log In', href: '/login' },
+      { name: 'Settings', href: '/settings' }
     ],
     support: [
-      { name: 'Help Center', href: '#help' },
       { name: 'Contact Us', href: '#contact' },
-      { name: 'Setup Guide', href: '#guide' },
-      { name: 'FAQ', href: '#faq' }
     ],
-    legal: [
-      { name: 'Privacy Policy', href: '#privacy' },
-      { name: 'Terms of Service', href: '#terms' },
-      { name: 'Cookie Policy', href: '#cookies' },
-      { name: 'Data Protection', href: '#data' }
-    ]
+
   }
 
   return (
@@ -92,7 +82,7 @@ export default function Footer() {
                     className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
-                  </a>
+                  </div>
                 </li>
               ))}
             </ul>

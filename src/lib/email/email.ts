@@ -1,11 +1,7 @@
 import { db } from "@/lib/db";
 import { getQuestionOfTheDay } from "@lib/leetcode";
 import { PROBLEM_DIFFICULTY, Reminder } from "@prisma-client";
-import {
-  dailyDigestTemplate,
-  reminderEmailTemplate,
-  weeklyReportTemplate,
-} from "./email-templates";
+import { reminderEmailTemplate, weeklyReportTemplate } from "./email-templates";
 import { transporter } from "./mail";
 
 interface SendEmailOptions {
@@ -37,7 +33,7 @@ export async function sendReminderEmails() {
   try {
     const users = await db.user.findMany({
       where: {
-        sendEmailReminder: true,
+        sendUpcomingReminder: true,
       },
       include: {
         reminder: {
@@ -57,9 +53,23 @@ export async function sendReminderEmails() {
       },
     });
 
+    const QOTD = await getQuestionOfTheDay();
+
     const sentEmails = Promise.allSettled(
       users.map((user) => {
-        if (user.reminder.length === 0) return;
+        user.reminder.push({
+          id: `${user.externalUserId}-${QOTD.titleSlug}`,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          problemTitle: `QOTD: ${QOTD.questionTitle}`,
+          problemSlug: QOTD.titleSlug,
+          problemDifficulty:
+            QOTD.difficulty.toUpperCase() as PROBLEM_DIFFICULTY,
+          reminderStatus: "PENDING",
+          scheduledDate: new Date(),
+          userId: user.externalUserId,
+        } satisfies Reminder);
+
         const template = reminderEmailTemplate({
           userName: user.email.split("@")[0],
           reminders: user.reminder,
@@ -88,86 +98,6 @@ export async function sendReminderEmails() {
     });
   } catch (error) {
     console.error("Error sending reminder email:", error);
-    throw error;
-  }
-}
-
-// Send daily digest email
-export async function sendDailyDigestEmail() {
-  try {
-    const users = await db.user.findMany({
-      where: {
-        sendDailyDigest: true,
-      },
-      include: {
-        reminder: {
-          where: {
-            // Get upcoming reminders for the next 7 days
-            scheduledDate: {
-              gt: new Date(new Date().toISOString().split("T")[0]),
-              lte: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            },
-            reminderStatus: "UPCOMING",
-          },
-          orderBy: {
-            scheduledDate: "desc",
-          },
-        },
-      },
-    });
-
-    const QOTD = await getQuestionOfTheDay();
-
-    const sentEmails = Promise.allSettled(
-      users.map((user) => {
-        user.reminder.push({
-          id: `${user.externalUserId}-${QOTD.titleSlug}`,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          problemTitle: `QOTD: ${QOTD.questionTitle}`,
-          problemSlug: QOTD.titleSlug,
-          problemDifficulty:
-            QOTD.difficulty.toUpperCase() as PROBLEM_DIFFICULTY,
-          reminderStatus: "PENDING",
-          scheduledDate: new Date(),
-          userId: user.externalUserId,
-        } satisfies Reminder);
-
-        const emailData = {
-          userName: user.email.split("@")[0],
-          todayReminders: user.reminder.map((r) => ({
-            problemTitle: r.problemTitle,
-            problemSlug: r.problemSlug,
-            problemDifficulty: r.problemDifficulty,
-          })),
-          upcomingReminders: user.reminder
-            .filter((r) => r.reminderStatus === "UPCOMING")
-            .map((r) => ({
-              problemTitle: r.problemTitle,
-              problemSlug: r.problemSlug,
-              problemDifficulty: r.problemDifficulty,
-              scheduledDate: r.scheduledDate.toLocaleDateString("en-US", {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-              }),
-            })),
-        };
-        const template = dailyDigestTemplate(emailData);
-        return sendEmail({
-          to: user.email,
-          subject: template.subject,
-          html: template.html,
-          text: template.text,
-        });
-      }),
-    );
-    sentEmails.catch((error) => {
-      console.error("Error sending daily digest:", error);
-      throw error;
-    });
-  } catch (error) {
-    console.error("Error sending daily digest:", error);
     throw error;
   }
 }

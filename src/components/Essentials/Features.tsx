@@ -18,8 +18,7 @@ const features = [
     description:
       "Create your account in seconds and start tracking your LeetCode journey immediately.",
     badge: "Essential",
-    color:
-      "bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: LogIn,
@@ -27,8 +26,7 @@ const features = [
     description:
       "Access your personalized dashboard with secure authentication and session management.",
     badge: "Secure",
-    color:
-      "bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: Plus,
@@ -36,8 +34,7 @@ const features = [
     description:
       "Easily add and categorize LeetCode problems you want to revisit and practice regularly.",
     badge: "Core",
-    color:
-      "bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: Clock,
@@ -45,8 +42,7 @@ const features = [
     description:
       "Get notified daily at 20:15 IST to ensure you're consistent with your coding practice.",
     badge: "Scheduled",
-    color:
-      "bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: Bell,
@@ -54,8 +50,7 @@ const features = [
     description:
       "Receive email and push notifications to keep your practice routine on track.",
     badge: "Alert",
-    color:
-      "bg-yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-400"
+    color: "bg-[#6366f1] text-white"
   },
   {
     icon: LayoutDashboard,
@@ -63,8 +58,7 @@ const features = [
     description:
       "Track your progress, problems, and reminders in one centralized place.",
     badge: "Hub",
-    color:
-      "bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+    color: "bg-[#6366f1] text-white"
   }
 ]
 
