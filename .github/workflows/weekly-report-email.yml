@@ -12,6 +12,6 @@ jobs:
       - name: Send Weekly Report
         uses: fjogeleit/http-request-action@v1
         with:
-          url: "https://leet-track-ochre.vercel.app/api/webhook/github/weekly-report"
+          url: "https://leet-track.netlify.app/api/webhook/github/weekly-report"
           method: "POST"
           customHeaders: '{"Content-Type": "application/json", "Authorization": "Bearer ${{ secrets.CUSTOM_RESEND_WEBHOOK_SECRET }}"}'
