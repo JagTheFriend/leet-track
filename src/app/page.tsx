@@ -5,6 +5,7 @@ import Footer from "@/components/Essentials/Footer";
 import Features from "@components/Essentials/Features";
 import HeroSection from "@components/Essentials/HeroSection";
 import LandingNavbar from "@components/Essentials/LandingNavbar";
+import ShowUp from "@components/Essentials/ShowUp";
 
 export default function Page() {
   return (
@@ -14,6 +15,7 @@ export default function Page() {
       <div className="flex justify-center">
         <Features />
       </div>
+      <ShowUp />
 
       <main className="flex flex-col min-h-screen overflow-auto">
         <div className="flex-grow flex items-center justify-center">
