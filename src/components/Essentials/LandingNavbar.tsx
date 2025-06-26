@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { useClerk, useUser } from '@clerk/nextjs'
 import { Code2, Menu, X } from 'lucide-react'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function Navbar() {
@@ -11,10 +11,17 @@ export default function Navbar() {
   const { signOut } = useClerk()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const { push, prefetch } = useRouter()
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark')
     setIsDark(isDarkMode)
+  }, [])
+
+  useEffect(() => {
+    prefetch("/login")
+    prefetch("/signup")
+    prefetch("/dashboard")
   }, [])
 
   const toggleDarkMode = () => {
@@ -64,16 +71,16 @@ export default function Navbar() {
           {!user ? (
             <>
               <Button
-                onClick={() => redirect("/login")}
+                onClick={() => push("/login")}
                 variant="outline"
                 className="cursor-pointer border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
               >
                 Log In
               </Button>
               <Button
-                onClick={() => redirect("/signup")}
-                className="cursor-pointer bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900">
-
+                onClick={() => push("/signup")}
+                className="cursor-pointer bg-[#6366f1] hover:bg-[#6366f1]/90 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900"
+              >
                 Sign Up
               </Button>
             </>
@@ -131,7 +138,7 @@ export default function Navbar() {
                   className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300"
                   onClick={() => {
                     setIsMenuOpen(false);
-                    redirect('/login');
+                    push('/login');
                   }}
                 >
                   Log In
@@ -139,7 +146,7 @@ export default function Navbar() {
                 <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900"
                   onClick={() => {
                     setIsMenuOpen(false);
-                    redirect('/signup');
+                    push('/signup');
                   }}
                 >
                   Sign Up

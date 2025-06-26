@@ -14,7 +14,7 @@ export default function Page() {
       <div className="flex justify-center">
         <Features />
       </div>
-     
+
       <main className="flex flex-col min-h-screen overflow-auto">
         <div className="flex-grow flex items-center justify-center">
           <ContactUs />
@@ -22,7 +22,6 @@ export default function Page() {
         <div className="w-full flex justify-center">
           <Footer />
         </div>
-       
       </main>
     </>
   );
