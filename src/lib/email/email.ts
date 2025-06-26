@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { getQuestionOfTheDay } from "@lib/leetcode";
-import { PROBLEM_DIFFICULTY, Reminder } from "@prisma-client";
+import { PROBLEM_DIFFICULTY } from "@prisma-client";
 import { reminderEmailTemplate, weeklyReportTemplate } from "./email-templates";
 import { transporter } from "./mail";
 
@@ -55,12 +55,28 @@ export async function sendReminderEmails() {
 
     const QOTD = await getQuestionOfTheDay();
 
-    const sentEmails = Promise.allSettled(
-      users.map((user) => {
-        user.reminder.push({
-          id: `${user.externalUserId}-${QOTD.titleSlug}`,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+    const sentEmails = users.map(async (user) => {
+      const template = reminderEmailTemplate({
+        userName: user.email.split("@")[0],
+        reminders: user.reminder,
+      });
+
+      await sendEmail({
+        to: user.email,
+        subject: template.subject,
+        html: template.html,
+        text: template.text,
+      });
+
+      // Upsert reminder
+      await db.reminder.upsert({
+        where: {
+          userId_problemSlug: {
+            problemSlug: QOTD.titleSlug,
+            userId: user.externalUserId,
+          },
+        },
+        create: {
           problemTitle: `QOTD: ${QOTD.questionTitle}`,
           problemSlug: QOTD.titleSlug,
           problemDifficulty:
@@ -68,21 +84,17 @@ export async function sendReminderEmails() {
           reminderStatus: "PENDING",
           scheduledDate: new Date(),
           userId: user.externalUserId,
-        } satisfies Reminder);
+          hasRead: false,
+        },
+        update: {
+          reminderStatus: "PENDING",
+        },
+      });
+    });
 
-        const template = reminderEmailTemplate({
-          userName: user.email.split("@")[0],
-          reminders: user.reminder,
-        });
-        return sendEmail({
-          to: user.email,
-          subject: template.subject,
-          html: template.html,
-          text: template.text,
-        });
-      }),
-    );
-    sentEmails.catch((error) => {
+    const sentEmailsPromise = Promise.all(sentEmails);
+
+    sentEmailsPromise.catch((error) => {
       console.error("Error sending reminder email:", error);
       throw error;
     });
