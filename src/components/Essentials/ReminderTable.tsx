@@ -79,6 +79,7 @@ export default function RemainderTable({
         reminder={selectedReminder}
         isDialogOpen={isDialogOpen}
         setIsDialogOpen={setIsDialogOpen}
+        setSelectedReminder={setSelectedReminder}
       />
       }
     </>
@@ -138,7 +139,9 @@ function TableRowContent({ reminder, setSelectedReminder, setIsDialogOpen }: { r
         })}
       </TableCell>
       <TableCell key={Math.random()}>{getStatusBadge(reminder.reminderStatus)}</TableCell>
-      <TableCell key={Math.random()} className="flex flex-row gap-2">
+      <TableCell key={Math.random()} className="flex flex-row gap-2" onClick={(e) => {
+        setSelectedReminder(reminder)
+      }}>
         <CustomDropDownMenu reminder={reminder} setIsDialogOpen={setIsDialogOpen} setSelectedReminder={setSelectedReminder} />
       </TableCell>
     </>
@@ -159,7 +162,6 @@ function CustomDropDownMenu({ reminder, setIsDialogOpen, setSelectedReminder }: 
       <DropdownMenuItem
         className="cursor-pointer"
         onClick={() => {
-          setSelectedReminder(reminder)
           setIsDialogOpen(true)
         }}
       >

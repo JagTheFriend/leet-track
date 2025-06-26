@@ -28,7 +28,7 @@ import {
 import { Reminder, REMINDER_STATUS } from "@prisma-client";
 import { Loader2, Plus } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 // https:\/\/leetcode\.com\/problems\/([^\/]+)
@@ -152,10 +152,12 @@ export function EditReminderModal({
   reminder,
   isDialogOpen,
   setIsDialogOpen,
+  setSelectedReminder,
 }: {
   reminder: Reminder;
   isDialogOpen: boolean;
   setIsDialogOpen: (isOpen: boolean) => void;
+  setSelectedReminder: Dispatch<SetStateAction<Reminder | undefined>>;
 }) {
   const [problemSlug, setProblemSlug] = useState<string | undefined>(
     reminder.problemSlug,
@@ -172,6 +174,7 @@ export function EditReminderModal({
   useEffect(() => {
     if (hasSucceeded) {
       toast.success("Successfully updated reminder");
+      setSelectedReminder(undefined)
       setIsDialogOpen(false);
     }
 
@@ -262,6 +265,7 @@ export function EditReminderModal({
             variant="outline"
             disabled={isExecuting}
             onClick={() => {
+              setSelectedReminder(undefined)
               setIsDialogOpen(false);
             }}
           >
