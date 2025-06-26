@@ -76,10 +76,14 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 className="text-slate-700 hover:text-blue-600 hover:bg-blue-50 font-medium cursor-pointer"
+                onClick={() => push("/login")}
+
               >
                 Log In
               </Button>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 cursor-pointer">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 cursor-pointer"
+                onClick={() => push("/signup")}
+              >
                 Start Free
               </Button>
             </div>
@@ -141,10 +145,13 @@ export default function Navbar() {
                 <Button
                   variant="outline"
                   className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 cursor-pointer"
+                  onClick={() => push("/login")}
                 >
                   Log In
                 </Button>
-                <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900 cursor-pointer">
+                <Button className="flex-1 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-slate-200 dark:text-slate-900 cursor-pointer"
+                  onClick={() => push("/signup")}
+                >
                   Sign Up
                 </Button>
               </div>
@@ -152,6 +159,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 className="w-full mt-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 cursor-pointer"
+                onClick={() => signOut({ redirectUrl: '/' })}
               >
                 Log Out
               </Button>

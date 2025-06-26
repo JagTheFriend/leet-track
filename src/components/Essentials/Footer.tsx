@@ -1,6 +1,7 @@
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@components/ui/button'
 import { Bell, Clock, Code2, Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Footer() {
   const footerLinks = {
@@ -78,12 +79,13 @@ export default function Footer() {
             <ul className="space-y-4">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
+                    prefetch
                     href={`${link.href}`}
                     className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -95,12 +97,13 @@ export default function Footer() {
             <ul className="space-y-4">
               {footerLinks.account.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
+                    prefetch
                     href={link.href}
                     className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -124,21 +127,22 @@ export default function Footer() {
           </div>
 
           {/* Legal Links */}
-          <div>
+          {/* <div>
             <h3 className="font-bold mb-6 text-slate-900 text-lg">Legal</h3>
             <ul className="space-y-4">
-              {/* {footerLinks.legal.map((link) => (
+              {footerLinks.legal.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
+                    prefetch
                     href={link.href}
                     className="text-slate-600 hover:text-blue-600 transition-colors font-medium"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
-              ))} */}
+              ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <Separator className="my-12 bg-slate-200" />
