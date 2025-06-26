@@ -1,15 +1,15 @@
 // src/components/Essentials/NotificationContext.tsx
 "use client";
-import { getQOTD, getReminders } from "@/app/(main)/dashboard/dashboard-action";
+import { getReminders, markNotifAsRead } from "@/app/(main)/dashboard/dashboard-action";
 import { useUser } from "@clerk/nextjs";
+import { Reminder } from "@prisma-client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-type Notification = { id: number; message: string; read: boolean };
 type NotificationContextType = {
-  notifications: Notification[];
-  addNotification: (message: string) => void;
-  markAsRead: (id: number) => void;
+  notifications: Reminder[];
+  addNotification: (message: Reminder) => void;
+  markAsRead: (id: string) => void;
   unreadCount: number;
 };
 
@@ -21,52 +21,34 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { isSignedIn } = useUser();
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<Reminder[]>([]);
 
   useEffect(() => {
     if (!isSignedIn) return;
 
     const getData = async () => {
-      const QOTD = await getQOTD();
-
-      if (QOTD?.serverError) {
-        toast.error("Failed to fetch QOTD");
-      }
-
-      const data = {
-        problemTitle: QOTD?.data?.questionTitle,
-      };
-      addNotification(data.problemTitle ? `QOTD: ${data.problemTitle}` : "Check QOTD");
-
       const reminders = await getReminders();
       if (reminders?.serverError) {
         toast.error("Failed to fetch notifications");
       }
       reminders?.data?.forEach(
-        (r) =>
-          r.reminderStatus === "PENDING" && addNotification(r.problemTitle),
+        (r) => !r.hasRead && r.reminderStatus === "PENDING" && addNotification(r),
       );
     };
     getData();
   }, [isSignedIn]);
 
-  const addNotification = (message: string) => {
-    // check if the message is already in the notifications array
-    if (notifications.some((n) => n.message === message)) return;
-
-    setNotifications((prev) => [
-      ...prev,
-      { id: Date.now(), message, read: false },
-    ]);
+  const addNotification = (reminder: Reminder) => {
+    if (notifications.some((n) => n.problemSlug === reminder.problemSlug)) return;
+    setNotifications((prev) => [...prev, reminder])
   };
 
-  const markAsRead = (id: number) => {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
-    );
+  const markAsRead = async (id: string) => {
+    setNotifications((prev) => prev.filter((r) => r.id != id))
+    await markNotifAsRead({ reminderId: id })
   };
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const unreadCount = notifications.length
 
   return (
     <NotificationContext.Provider
