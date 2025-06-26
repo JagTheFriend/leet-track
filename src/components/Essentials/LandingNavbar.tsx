@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { useClerk, useUser } from '@clerk/nextjs';
-import { Code2, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -50,8 +51,8 @@ export default function Navbar() {
       <div className="container flex h-20 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-            <Code2 className="h-6 w-6 text-white" />
+          <div className="bg-gradient-to-br from-blue-600 w-10 h-10 to-purple-600 rounded-xl flex items-center justify-center">
+            <Image src="/leettrack-logo.png" className="object-contain" height={1000} width={1000} alt="LeetTrack Logo" />
           </div>
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
             LeetTrack

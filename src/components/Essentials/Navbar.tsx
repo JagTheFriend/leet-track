@@ -5,6 +5,7 @@ import { NotificationBell } from "@/components/Essentials/NotificationBell";
 import { NotificationDropdown } from "@/components/Essentials/NotificationDropdown";
 import { UserButton } from "@clerk/nextjs";
 import { Moon, Sun } from "lucide-react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -78,10 +79,15 @@ const Navbar = () => {
         <MobileMenuTrigger />
 
         {/* App Title */}
-        <h1 className="text-xl font-semibold ml-2">
-          <span className="text-[#6366f1] font-bold">Leet</span>
-          <span className="text-black dark:text-white font-bold">Track</span>
-        </h1>
+        {/* Logo */}
+        <div className="flex items-center space-x-3">
+          <div className="bg-gradient-to-br from-blue-600 w-10 h-10 to-purple-600 rounded-xl flex items-center justify-center">
+            <Image src="/leettrack-logo.png" className="object-contain" height={1000} width={1000} alt="LeetTrack Logo" />
+          </div>
+          <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
+            LeetTrack
+          </span>
+        </div>
       </div>
 
       {/* Right Controls */}
