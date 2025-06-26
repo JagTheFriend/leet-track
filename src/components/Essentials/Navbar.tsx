@@ -113,21 +113,6 @@ const Navbar = () => {
             />
           )}
         </div>
-        <div className="relative" ref={dropdownRef}>
-          <button
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="p-2 hover:bg-gray-800 rounded-full transition-colors"
-            aria-label="Notifications"
-          >
-            <NotificationBell />
-          </button>
-          {dropdownOpen && (
-            <NotificationDropdown
-              open={dropdownOpen}
-              onClose={() => setDropdownOpen(false)}
-            />
-          )}
-        </div>
 
         <UserButton />
       </div>

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import { Loader } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { addFeedback } from './action'
@@ -129,8 +130,9 @@ export default function ContactSection() {
                 <Button
                   type="submit"
                   className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02]"
+                  disabled={isLoading}
                 >
-                  Send Message
+                  {isLoading ? <Loader className='animate-spin' /> : `Send Message`}
                 </Button>
 
                 <p className="text-center text-sm text-slate-500 mt-4">

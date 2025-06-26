@@ -32,13 +32,6 @@ export default function CTA() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-lg px-8 py-4 h-auto border-white/30 text-white hover:bg-white/10 font-semibold backdrop-blur-sm"
-            >
-              View Demo
-            </Button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
