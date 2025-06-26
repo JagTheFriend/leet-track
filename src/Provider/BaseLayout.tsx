@@ -6,9 +6,7 @@ import { SSidebar } from "@components/Essentials/SSidebar";
 
 export default function BaseLayout({
   children,
-  children,
 }: {
-  children: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (

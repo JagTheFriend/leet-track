@@ -1,7 +1,7 @@
 'use client';
 
 // SSidebar.tsx
-import { CalendarCog, CalendarRange, LayoutDashboard } from "lucide-react";
+import { CalendarCog, CalendarRange, LayoutDashboard, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";

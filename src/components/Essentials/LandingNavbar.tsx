@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
-import { useUser } from '@clerk/nextjs';
+import { useClerk, useUser } from '@clerk/nextjs';
 import { Code2, Menu, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Navbar() {
@@ -86,6 +87,7 @@ export default function Navbar() {
             <Button
               variant="outline"
               className="border-slate-300 text-slate-700 hover:bg-slate-50 font-medium cursor-pointer"
+              onClick={() => signOut({ redirectUrl: '/' })}
             >
               Logout
             </Button>

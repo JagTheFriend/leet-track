@@ -38,13 +38,6 @@ const Navbar = () => {
     localStorage.setItem("theme", newTheme);
     setIsDark(!isDark);
   };
-  const toggleTheme = () => {
-    const html = document.documentElement;
-    const newTheme = isDark ? "light" : "dark";
-    html.classList.toggle("dark");
-    localStorage.setItem("theme", newTheme);
-    setIsDark(!isDark);
-  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -136,10 +129,6 @@ const Navbar = () => {
           )}
         </div>
 
-        <UserButton />
-      </div>
-    </div>
-  );
         <UserButton />
       </div>
     </div>
