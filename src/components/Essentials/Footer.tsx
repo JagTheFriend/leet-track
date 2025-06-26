@@ -1,6 +1,7 @@
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@components/ui/button'
-import { Bell, Clock, Code2, Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import { Bell, Clock, Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Footer() {
@@ -29,8 +30,8 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <Code2 className="h-6 w-6 text-white" />
+              <div className="bg-gradient-to-br from-blue-600 w-10 h-10 to-purple-600 rounded-xl flex items-center justify-center">
+                <Image src="/leettrack-logo.png" className="object-contain" height={1000} width={1000} alt="LeetTrack Logo" />
               </div>
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
                 LeetTrack
@@ -146,22 +147,9 @@ export default function Footer() {
         </div>
 
         <Separator className="my-12 bg-slate-200" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-
-          <div className="flex items-center space-x-8 text-sm text-slate-600">
-            <div className="flex items-center space-x-2">
-              <span>🚀</span>
-              <span className="font-medium">Made with ❤️ by USC KIIT Developers</span>
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-slate-300" />
-            <div className="flex items-center space-x-2">
-              <span>⏰</span>
-              <span className="font-medium">Daily at 20:15 IST</span>
-            </div>
-            <div className=" text-slate-600 text-sm font-medium">
-              © 2025 LeetTrack. All rights reserved.
-            </div>
+        <div className="flex items-center space-x-8 text-sm justify-center w-full text-slate-600">
+          <div className=" text-slate-600 text-sm font-medium">
+            © 2025 LeetTrack. All rights reserved.
           </div>
         </div>
       </div>
