@@ -41,10 +41,6 @@ enum PROBLEM_DIFFICULTY {
 model Reminder {
   id String @id @default(cuid())
 
-  // FALSE if user hasn't marked notification as read.
-  // TRUE if user has marked notif as read
-  hasRead Boolean @default(false)
-
   // Used to track status of reminder for analytic purposes
   reminderStatus REMINDER_STATUS @default(UPCOMING)
 

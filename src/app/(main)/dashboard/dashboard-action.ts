@@ -71,38 +71,18 @@ export const createReminder = authActionClient
   });
 
 // Used for fetching reminders for the authenticated user.
-export const getReminders = authActionClient.action(
-  async ({ ctx, parsedInput }) => {
-    // Note: You can check the status of each reminder based on REMINDER_STATUS enum
-    // and filter them accordingly if needed (refer to prisma schema for details).
-    return await ctx.db.reminder.findMany({
-      where: {
-        userId: ctx.user.externalUserId,
-      },
-      orderBy: {
-        scheduledDate: "desc",
-      },
-    });
-  },
-);
-
-export const markNotifAsRead = authActionClient
-  .schema(z.object({ reminderId: z.string() }))
-  .action(async ({ ctx, parsedInput }) => {
-    // Note: You can check the status of each reminder based on REMINDER_STATUS enum
-    // and filter them accordingly if needed (refer to prisma schema for details).
-    await ctx.db.reminder.update({
-      where: {
-        id: parsedInput.reminderId,
-      },
-      data: {
-        hasRead: true,
-      },
-    });
-    revalidatePath("/dashboard");
-    revalidatePath("/calendar");
-    revalidatePath("/settings");
+export const getReminders = authActionClient.action(async ({ ctx }) => {
+  // Note: You can check the status of each reminder based on REMINDER_STATUS enum
+  // and filter them accordingly if needed (refer to prisma schema for details).
+  return await ctx.db.reminder.findMany({
+    where: {
+      userId: ctx.user.externalUserId,
+    },
+    orderBy: {
+      scheduledDate: "desc",
+    },
   });
+});
 
 const updateReminderSchema = z.object({
   reminderId: z.string().cuid(),
@@ -137,7 +117,6 @@ export const updateReminder = authActionClient
         problemDifficulty:
           questionData.difficulty.toUpperCase() as PROBLEM_DIFFICULTY,
         reminderStatus,
-        hasRead: reminderStatus === "PENDING" ? false : true,
       },
     });
     return revalidatePath("/dashboard");
