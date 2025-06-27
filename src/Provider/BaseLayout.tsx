@@ -19,7 +19,10 @@ export default function BaseLayout({
 
         <div className="flex-1 flex flex-col min-w-0 h-full">
           <div className="flex-shrink-0 h-16">
-            <Navbar />
+            <Navbar
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+            />
           </div>
           <main className="flex-1 pt-2 px-3 pb-6 overflow-y-auto bg-white dark:bg-[#e2e8f0]">
             {children}

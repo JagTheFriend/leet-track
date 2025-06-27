@@ -28,20 +28,24 @@ export const NotificationDropdown = ({
         ) : (
           notifications.map(
             (notif) =>
-              <li
-                key={notif.id}
-                className={`p-3 border-b last:border-b-0 flex justify-between items-center ${"bg-blue-50"}`}
-              >
-                <span className="text-gray-800 font-thin">
-                  {notif.problemTitle}
-                </span>
-                <button
-                  onClick={() => markAsRead(notif.id)}
-                  className="text-xs text-blue-600 hover:underline cursor-pointer"
+              !notif.read && (
+                <li
+                  key={notif.id}
+                  className={`p-3 border-b last:border-b-0 flex justify-between items-center ${
+                    !notif.read ? "bg-blue-50" : ""
+                  }`}
                 >
-                  Mark read
-                </button>
-              </li>
+                  <span className="text-gray-800 font-thin">
+                    {notif.message}
+                  </span>
+                  <button
+                    onClick={() => markAsRead(notif.id)}
+                    className="text-xs text-blue-600 hover:underline cursor-pointer"
+                  >
+                    Mark read
+                  </button>
+                </li>
+              ),
           )
         )}
       </ul>
