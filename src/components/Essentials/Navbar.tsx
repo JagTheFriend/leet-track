@@ -6,6 +6,7 @@ import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Moon, Sun, Menu, X , Code2} from "lucide-react";
+import Image from 'next/image'
 
 type NavbarProps = {
   sidebarOpen: boolean;
@@ -69,9 +70,14 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }: NavbarProps) => {
         </button>
 
         {/* App Title */}
-        <div className="flex items-center space-x-2">
-          <Code2 className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-          <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
+        <div className="flex items-center space-x-2 md:ml-[10px] ml-0">
+          <Image
+                    src="/LeetTrack-Logo.png"
+                    alt="LeetTrack Logo"
+                    width={40}
+                    height={40}
+                    className="rounded"
+                    />
         </div>
       </div>
 

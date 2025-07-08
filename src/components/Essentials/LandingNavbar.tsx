@@ -5,6 +5,7 @@ import { useClerk, useUser } from '@clerk/nextjs'
 import { Code2, Menu, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export default function Navbar() {
   const { user } = useUser()
@@ -48,10 +49,16 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-900/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <Code2 className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-          <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
+        <div className="flex items-center space-x-2 ml-0 md:ml-[240px]" >
+          <Image
+          src="/LeetTrack-Logo.png"
+          alt="LeetTrack Logo"
+          width={40}
+          height={40}
+          className="rounded"
+          />
         </div>
 
         {/* Desktop Navigation */}
