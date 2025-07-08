@@ -1,5 +1,6 @@
 import { Separator } from '@/components/ui/separator'
 import { Bell, Clock, Code2 } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Footer() {
   const footerLinks = {
@@ -26,9 +27,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <Code2 className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-100">LeetTrack</span>
+            <div className="flex items-center space-x-2 mb-4 md:ml-[1px] ml-0">
+               <Image
+                                  src="/LeetTrack-Logo.png"
+                                  alt="LeetTrack Logo"
+                                  width={40}
+                                  height={40}
+                                  className="rounded"
+                                  />
             </div>
             <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-sm">
               Build consistent coding habits with daily reminders at 20:15 IST.
